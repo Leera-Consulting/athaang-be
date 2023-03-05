@@ -28,6 +28,12 @@ app.use(express.json());
 
 require("./routes/user.route.js")(app);
 require("./routes/department.route.js")(app);
+require("./routes/role.route.js")(app);
+require("./routes/designation.route.js")(app);
+require("./routes/mainMenu.route.js")(app);
+require("./routes/menu.route.js")(app);
+require("./routes/documentType.route.js")(app);
+require("./routes/company.route.js")(app);
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
