@@ -1,13 +1,17 @@
 const sql = require('./db.js');
 
 // constructor
-const Role = function(role) {
-    this.id = role.id;
-    this.role = role.role;
+const MainMenu = function(mainMenu) {
+    this.id = mainMenu.id;
+    this.menu_name = mainMenu.menu_name;
+    this.order_no = mainMenu.order_no;
+    this.menu_icon = mainMenu.menu_icon;
+    this.status = mainMenu.status;
+    this.supplier_menu = mainMenu.supplier_menu;
 }
 
-Role.getAll = result =>   {
-    const query = "SELECT * FROM sma_role";
+MainMenu.getAll = result =>   {
+    const query = "SELECT * from sma_main_menu";
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -18,8 +22,8 @@ Role.getAll = result =>   {
     });
 };
 
-Role.findById = (id, result) => {
-    const query = `SELECT * FROM sma_role WHERE id = ${id}`;
+MainMenu.findById = (id, result) => {
+    const query = `SELECT * from sma_main_menu WHERE id = ${id}`;
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -31,10 +35,9 @@ Role.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-  
-        // not found User with the id
+
         result({ kind: "not_found" }, null);
     });
 };
 
-module.exports = Role;
+module.exports = MainMenu;

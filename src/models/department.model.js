@@ -23,19 +23,19 @@ Department.getAll = result =>   {
 Department.findById = (id, result) => {
     const query = `SELECT * FROM sma_department WHERE id = ${id}`;
     sql.query(query, (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(err, null);
-        return;
-      }
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
   
-      if (res.length) {
-        result(null, res[0]);
-        return;
-      }
+        if (res.length) {
+            result(null, res[0]);
+            return;
+        }
   
-      // not found User with the id
-      result({ kind: "not_found" }, null);
+        // not found User with the id
+        result({ kind: "not_found" }, null);
     });
 };
 

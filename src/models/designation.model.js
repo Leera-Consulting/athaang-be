@@ -1,13 +1,14 @@
 const sql = require('./db.js');
 
 // constructor
-const Role = function(role) {
-    this.id = role.id;
-    this.role = role.role;
+const Designation = function(designation) {
+    this.id = designation.id;
+    this.designation = designation.designation;
+    this.travel_per_diem = designation.travel_per_diem;
 }
 
-Role.getAll = result =>   {
-    const query = "SELECT * FROM sma_role";
+Designation.getAll = result =>   {
+    const query = "SELECT * FROM sma_designation";
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -18,8 +19,8 @@ Role.getAll = result =>   {
     });
 };
 
-Role.findById = (id, result) => {
-    const query = `SELECT * FROM sma_role WHERE id = ${id}`;
+Designation.findById = (id, result) => {
+    const query = `SELECT * FROM sma_designation WHERE id = ${id}`;
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -37,4 +38,4 @@ Role.findById = (id, result) => {
     });
 };
 
-module.exports = Role;
+module.exports = Designation;

@@ -1,13 +1,12 @@
 const sql = require('./db.js');
 
 // constructor
-const Role = function(role) {
-    this.id = role.id;
-    this.role = role.role;
+const Company = function(company) {
+    this.id = company.id;
 }
 
-Role.getAll = result =>   {
-    const query = "SELECT * FROM sma_role";
+Company.getAll = result =>   {
+    const query = "SELECT * from company";
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -18,8 +17,8 @@ Role.getAll = result =>   {
     });
 };
 
-Role.findById = (id, result) => {
-    const query = `SELECT * FROM sma_role WHERE id = ${id}`;
+Company.findById = (id, result) => {
+    const query = `SELECT * from company WHERE comp_id = ${id}`;
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -31,10 +30,9 @@ Role.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-  
-        // not found User with the id
+
         result({ kind: "not_found" }, null);
     });
 };
 
-module.exports = Role;
+module.exports = Company;

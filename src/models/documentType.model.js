@@ -1,13 +1,14 @@
 const sql = require('./db.js');
 
 // constructor
-const Role = function(role) {
-    this.id = role.id;
-    this.role = role.role;
+const DepartmentType = function(departmentType) {
+    this.id = departmentType.id;
+    this.document = departmentType.document;
+    this.status = departmentType.status;
 }
 
-Role.getAll = result =>   {
-    const query = "SELECT * FROM sma_role";
+DepartmentType.getAll = result =>   {
+    const query = "SELECT * from sma_document_type";
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -18,8 +19,8 @@ Role.getAll = result =>   {
     });
 };
 
-Role.findById = (id, result) => {
-    const query = `SELECT * FROM sma_role WHERE id = ${id}`;
+DepartmentType.findById = (id, result) => {
+    const query = `SELECT * from sma_document_type WHERE id = ${id}`;
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -31,10 +32,9 @@ Role.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-  
-        // not found User with the id
+
         result({ kind: "not_found" }, null);
     });
 };
 
-module.exports = Role;
+module.exports = DepartmentType;
