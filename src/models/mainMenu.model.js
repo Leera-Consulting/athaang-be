@@ -1,3 +1,4 @@
+const { getQuery, getByIdQuery } = require('../utils/db.js');
 const sql = require('./db.js');
 
 // constructor
@@ -11,7 +12,7 @@ const MainMenu = function(mainMenu) {
 }
 
 MainMenu.getAll = result =>   {
-    const query = "SELECT * from sma_main_menu";
+    const query = getQuery("sma_main_menu");
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -23,7 +24,7 @@ MainMenu.getAll = result =>   {
 };
 
 MainMenu.findById = (id, result) => {
-    const query = `SELECT * from sma_main_menu WHERE id = ${id}`;
+    const query = getByIdQuery("sma_main_menu", id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);

@@ -1,3 +1,4 @@
+const { getQuery, getByIdQuery } = require('../utils/db.js');
 const sql = require('./db.js');
 
 // constructor
@@ -7,7 +8,7 @@ const Role = function(role) {
 }
 
 Role.getAll = result =>   {
-    const query = "SELECT * FROM sma_role";
+    const query = getQuery("sma_role");
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -19,7 +20,7 @@ Role.getAll = result =>   {
 };
 
 Role.findById = (id, result) => {
-    const query = `SELECT * FROM sma_role WHERE id = ${id}`;
+    const query = getByIdQuery("sma_role", id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);

@@ -1,3 +1,4 @@
+const { getQuery, getByIdQuery } = require('../utils/db.js');
 const sql = require('./db.js');
 
 // constructor
@@ -8,7 +9,7 @@ const DepartmentType = function(departmentType) {
 }
 
 DepartmentType.getAll = result =>   {
-    const query = "SELECT * from sma_document_type";
+    const query = getQuery("sma_document_type");
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -20,7 +21,7 @@ DepartmentType.getAll = result =>   {
 };
 
 DepartmentType.findById = (id, result) => {
-    const query = `SELECT * from sma_document_type WHERE id = ${id}`;
+    const query = getByIdQuery("sma_document_type", id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
