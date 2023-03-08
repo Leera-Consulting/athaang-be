@@ -1,14 +1,16 @@
+const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
 const sql = require('./db.js');
 
-// constructor
+// Document type constructor
 const DepartmentType = function(departmentType) {
     this.id = departmentType.id;
     this.document = departmentType.document;
     this.status = departmentType.status;
 }
 
+// Result all sma_document_type from the database
 DepartmentType.getAll = result =>   {
-    const query = "SELECT * from sma_document_type";
+    const query = getQuery("sma_document_type");
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -19,8 +21,9 @@ DepartmentType.getAll = result =>   {
     });
 };
 
+// Result a sma_document_type filtered from id from the database
 DepartmentType.findById = (id, result) => {
-    const query = `SELECT * from sma_document_type WHERE id = ${id}`;
+    const query = getByIdQuery("sma_document_type", id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -33,7 +36,7 @@ DepartmentType.findById = (id, result) => {
             return;
         }
 
-        result({ kind: "not_found" }, null);
+        result(rowNotFoundResult("Document Type"));
     });
 };
 

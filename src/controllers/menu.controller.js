@@ -1,5 +1,6 @@
 const Menu = require('../models/menu.model');
 
+// Responses for fetching all menus
 exports.findAll = (req, res) => {
 
     Menu.getAll((err, data) => {
@@ -17,6 +18,7 @@ exports.findAll = (req, res) => {
     })
 };
 
+// Responses for fetching a menu by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;

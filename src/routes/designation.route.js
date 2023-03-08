@@ -3,7 +3,7 @@ module.exports = app => {
   
     const router = require("express").Router();
   
-    // Retrieve all users
+    // Retrieve designation(s)
     router.get("/", designation.findAll);
     router.get("/:id", designation.findById);
   

@@ -1,5 +1,6 @@
 const DocumentType = require('../models/documentType.model');
 
+// Responses for fetching all document types
 exports.findAll = (req, res) => {
 
     DocumentType.getAll((err, data) => {
@@ -17,6 +18,7 @@ exports.findAll = (req, res) => {
     })
 };
 
+// Responses for fetching a document type by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;

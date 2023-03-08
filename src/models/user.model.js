@@ -1,6 +1,7 @@
+const { getQuery, getByIdQuery, rowNotFoundResult } = require("../utils/db.js");
 const sql = require("./db.js");
 
-// constructor
+// User constructor
 const User = function(user) {
   this.id = user.id;
   this.last_ip_address = user.last_ip_address;
@@ -64,8 +65,9 @@ const User = function(user) {
   this.ps = user.ps;
 };
 
+// Result all sma_user from the database
 User.getAll = result => {
-    const query = "SELECT * FROM sma_user";
+    const query = getQuery("sma_user");
     sql.query(query, (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -77,8 +79,9 @@ User.getAll = result => {
     });
 };
 
+// Result a sma_user filtered from id from the database
 User.findById = (id, result) => {
-  const query = `SELECT * FROM sma_user WHERE id = ${id}`;
+  const query = getByIdQuery("sma_user", id);
   sql.query(query, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -91,77 +94,8 @@ User.findById = (id, result) => {
       return;
     }
 
-    // not found User with the id
-    result({ kind: "not_found" }, null);
+    result(rowNotFoundResult("User"));
   });
 };
-
-// User.create = (newTutorial, result) => {
-//   sql.query("INSERT INTO tutorials SET ?", newTutorial, (err, res) => {
-//     if (err) {
-//       console.log("error: ", err);
-//       result(err, null);
-//       return;
-//     }
-
-//     console.log("created tutorial: ", { id: res.insertId, ...newTutorial });
-//     result(null, { id: res.insertId, ...newTutorial });
-//   });
-// };
-
-// User.updateById = (id, tutorial, result) => {
-//   sql.query(
-//     "UPDATE tutorials SET title = ?, description = ?, published = ? WHERE id = ?",
-//     [tutorial.title, tutorial.description, tutorial.published, id],
-//     (err, res) => {
-//       if (err) {
-//         console.log("error: ", err);
-//         result(null, err);
-//         return;
-//       }
-
-//       if (res.affectedRows == 0) {
-//         // not found Tutorial with the id
-//         result({ kind: "not_found" }, null);
-//         return;
-//       }
-
-//       console.log("updated tutorial: ", { id: id, ...tutorial });
-//       result(null, { id: id, ...tutorial });
-//     }
-//   );
-// };
-
-// User.remove = (id, result) => {
-//   sql.query("DELETE FROM tutorials WHERE id = ?", id, (err, res) => {
-//     if (err) {
-//       console.log("error: ", err);
-//       result(null, err);
-//       return;
-//     }
-
-//     if (res.affectedRows == 0) {
-//       // not found Tutorial with the id
-//       result({ kind: "not_found" }, null);
-//       return;
-//     }
-
-//     console.log("deleted tutorial with id: ", id);
-//     result(null, res);
-//   });
-// };
-
-// User.removeAll = result => {
-//   sql.query("DELETE FROM tutorials", (err, res) => {
-//     if (err) {
-//       console.log("error: ", err);
-//       result(null, err);
-//       return;
-//     }
-
-//     console.log(`deleted ${res.affectedRows} tutorials`);
-//     result(null, res);
-//   });
-// };
 
 module.exports = User;

@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 
+// setup connection to mysql server
 const connection = mysql.createPool({
     user: 'root',
     password: 'admin@123',

@@ -1,12 +1,14 @@
+const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
 const sql = require('./db.js');
 
-// constructor
+// Company constructor
 const Company = function(company) {
     this.id = company.id;
 }
 
+// Result all company from the database
 Company.getAll = result =>   {
-    const query = "SELECT * from company";
+    const query = getQuery("company");
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -17,8 +19,9 @@ Company.getAll = result =>   {
     });
 };
 
+// Result a company filtered from id from the database
 Company.findById = (id, result) => {
-    const query = `SELECT * from company WHERE comp_id = ${id}`;
+    const query = getByIdQuery("company", id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -31,7 +34,7 @@ Company.findById = (id, result) => {
             return;
         }
 
-        result({ kind: "not_found" }, null);
+        result(rowNotFoundResult("Company"));
     });
 };
 

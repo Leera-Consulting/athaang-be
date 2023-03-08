@@ -1,5 +1,6 @@
 const Company = require('../models/company.model');
 
+// Responses for fetching all companies
 exports.findAll = (req, res) => {
 
     Company.getAll((err, data) => {
@@ -17,6 +18,7 @@ exports.findAll = (req, res) => {
     })
 };
 
+// Responses for fetching a company by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;

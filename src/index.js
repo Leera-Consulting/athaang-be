@@ -26,6 +26,7 @@ connection.connect(function(err) {
 
 app.use(express.json());
 
+// setup routes for apis
 require("./routes/user.route.js")(app);
 require("./routes/department.route.js")(app);
 require("./routes/role.route.js")(app);
@@ -43,10 +44,6 @@ app.use(function(req, res, next) {
     );
     next();
 });
-
-// api routes
-// app.use('/api/user', userRouter);
-
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

@@ -3,7 +3,7 @@ module.exports = app => {
   
     const router = require("express").Router();
   
-    // Retrieve all users
+    // Retrieve document type(s)
     router.get("/", documentType.findAll);
     router.get("/:id", documentType.findById);
   

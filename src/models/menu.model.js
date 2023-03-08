@@ -1,6 +1,7 @@
+const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
 const sql = require('./db.js');
 
-// constructor
+// Menu constructor
 const Menu = function(menu) {
     this.id = menu.id;
     this.menu_id = menu.id;
@@ -15,8 +16,9 @@ const Menu = function(menu) {
     this.supplier_menu = menu.supplier_menu;
 }
 
+// Result all sma_menu from the database
 Menu.getAll = result =>   {
-    const query = "SELECT * from sma_menu";
+    const query = getQuery("sma_menu");
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -27,8 +29,9 @@ Menu.getAll = result =>   {
     });
 };
 
+// Result a sma_menu filtered from id from the database
 Menu.findById = (id, result) => {
-    const query = `SELECT * from sma_menu WHERE id = ${id}`;
+    const query = getByIdQuery("sma_menu", id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -41,7 +44,7 @@ Menu.findById = (id, result) => {
             return;
         }
 
-        result({ kind: "not_found" }, null);
+        result(rowNotFoundResult("Menu"));
     });
 };
 
