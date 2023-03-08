@@ -1,7 +1,7 @@
-const { getQuery, getByIdQuery } = require("../utils/db.js");
+const { getQuery, getByIdQuery, rowNotFoundResult } = require("../utils/db.js");
 const sql = require("./db.js");
 
-// constructor
+// User constructor
 const User = function(user) {
   this.id = user.id;
   this.last_ip_address = user.last_ip_address;
@@ -65,6 +65,7 @@ const User = function(user) {
   this.ps = user.ps;
 };
 
+// Result all sma_user from the database
 User.getAll = result => {
     const query = getQuery("sma_user");
     sql.query(query, (err, res) => {
@@ -78,6 +79,7 @@ User.getAll = result => {
     });
 };
 
+// Result a sma_user filtered from id from the database
 User.findById = (id, result) => {
   const query = getByIdQuery("sma_user", id);
   sql.query(query, (err, res) => {
@@ -92,8 +94,7 @@ User.findById = (id, result) => {
       return;
     }
 
-    // not found User with the id
-    result({ kind: "not_found" }, null);
+    result(rowNotFoundResult("User"));
   });
 };
 

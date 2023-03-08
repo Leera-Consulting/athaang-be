@@ -1,5 +1,6 @@
 const User = require('../models/user.model');
 
+// Responses for fetching all users
 exports.findAll = (req, res) => {
   
     User.getAll((err, data) => {
@@ -15,6 +16,7 @@ exports.findAll = (req, res) => {
     });
 };
 
+// Responses for fetching a user by id
 exports.findById = (req, res) => {
 
   const { id } = req.params;

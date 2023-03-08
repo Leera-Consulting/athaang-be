@@ -1,13 +1,14 @@
-const { getQuery, getByIdQuery } = require('../utils/db.js');
+const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
 const sql = require('./db.js');
 
-// constructor
+// Designation constructor
 const Designation = function(designation) {
     this.id = designation.id;
     this.designation = designation.designation;
     this.travel_per_diem = designation.travel_per_diem;
 }
 
+// Result all sma_designation from the database
 Designation.getAll = result =>   {
     const query = getQuery("sma_designation");
     sql.query(query, (err, res) => {
@@ -20,6 +21,7 @@ Designation.getAll = result =>   {
     });
 };
 
+// Result a sma_designation filtered from id from the database
 Designation.findById = (id, result) => {
     const query = getByIdQuery("sma_designation", id);
     sql.query(query, (err, res) => {
@@ -34,8 +36,7 @@ Designation.findById = (id, result) => {
             return;
         }
   
-        // not found User with the id
-        result({ kind: "not_found" }, null);
+        result(rowNotFoundResult("Designation"));
     });
 };
 

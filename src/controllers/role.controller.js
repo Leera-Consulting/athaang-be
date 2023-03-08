@@ -1,5 +1,6 @@
 const Role = require('../models/role.model');
 
+// Responses for fetching all roles
 exports.findAll = (req, res) => {
 
     Role.getAll((err, data) => {
@@ -17,6 +18,7 @@ exports.findAll = (req, res) => {
     })
 };
 
+// Responses for fetching a role by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;

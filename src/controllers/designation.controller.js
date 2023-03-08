@@ -1,5 +1,6 @@
 const Designation = require('../models/designation.model');
 
+// Responses for fetching all designations
 exports.findAll = (req, res) => {
 
     Designation.getAll((err, data) => {
@@ -17,6 +18,7 @@ exports.findAll = (req, res) => {
     })
 };
 
+// Responses for fetching a designation type by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;

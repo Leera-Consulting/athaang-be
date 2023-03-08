@@ -1,11 +1,12 @@
-const { getQuery, getByIdQuery } = require('../utils/db.js');
+const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
 const sql = require('./db.js');
 
-// constructor
+// Company constructor
 const Company = function(company) {
     this.id = company.id;
 }
 
+// Result all company from the database
 Company.getAll = result =>   {
     const query = getQuery("company");
     sql.query(query, (err, res) => {
@@ -18,6 +19,7 @@ Company.getAll = result =>   {
     });
 };
 
+// Result a company filtered from id from the database
 Company.findById = (id, result) => {
     const query = getByIdQuery("company", id);
     sql.query(query, (err, res) => {
@@ -32,7 +34,7 @@ Company.findById = (id, result) => {
             return;
         }
 
-        result({ kind: "not_found" }, null);
+        result(rowNotFoundResult("Company"));
     });
 };
 

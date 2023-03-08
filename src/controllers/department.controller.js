@@ -1,5 +1,6 @@
 const Department = require('../models/department.model');
 
+// Responses for fetching all departments
 exports.findAll = (req, res) => {
 
     Department.getAll((err, data) => {
@@ -17,6 +18,7 @@ exports.findAll = (req, res) => {
     })
 };
 
+// Responses for fetching a department by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;

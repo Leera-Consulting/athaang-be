@@ -3,7 +3,7 @@ module.exports = app => {
   
     const router = require("express").Router();
   
-    // Retrieve all companies
+    // Retrieve company(ies)
     router.get("/", company.findAll);
     router.get("/:id", company.findById);
   
