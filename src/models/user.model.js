@@ -1,7 +1,7 @@
 const { getQuery, getByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require("./db.js");
-const { SMA_USER } = require("../constants/tables");
+const { SMA_USER, USER } = require("../constants/tables");
 
 // User constructor
 const User = function(user) {
@@ -96,7 +96,7 @@ User.findById = (id, result) => {
       return;
     }
 
-    result(rowNotFoundResult("User"));
+    result(rowNotFoundResult(USER));
   });
 };
 

@@ -1,7 +1,7 @@
 const { getQuery, getByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_MAIN_MENU } = require("../constants/tables");
+const { SMA_MAIN_MENU, MAIN_MENU } = require("../constants/tables");
 
 // Main menu constructor
 const MainMenu = function(mainMenu) {
@@ -41,7 +41,7 @@ MainMenu.findById = (id, result) => {
             return;
         }
 
-        result(rowNotFoundResult("Main Menu"));
+        result(rowNotFoundResult(MAIN_MENU));
     });
 };
 

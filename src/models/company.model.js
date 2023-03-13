@@ -36,7 +36,7 @@ Company.findById = (id, result) => {
             return;
         }
 
-        result(rowNotFoundResult("Company"));
+        result(rowNotFoundResult(COMPANY));
     });
 };
 

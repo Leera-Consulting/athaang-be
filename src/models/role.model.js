@@ -1,7 +1,7 @@
 const { getQuery, getByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_ROLE } = require('../constants/tables');
+const { SMA_ROLE, ROLE } = require('../constants/tables');
 
 // Role constructor
 const Role = function(role) {
@@ -37,7 +37,7 @@ Role.findById = (id, result) => {
             return;
         }
 
-        result(rowNotFoundResult("Role"));
+        result(rowNotFoundResult(ROLE));
     });
 };
 

@@ -1,7 +1,7 @@
 const { getQuery, getByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_DESIGNATION } = require("../constants/tables");
+const { SMA_DESIGNATION, DESIGNATION } = require("../constants/tables");
 
 // Designation constructor
 const Designation = function(designation) {
@@ -38,7 +38,7 @@ Designation.findById = (id, result) => {
             return;
         }
   
-        result(rowNotFoundResult("Designation"));
+        result(rowNotFoundResult(DESIGNATION));
     });
 };
 
