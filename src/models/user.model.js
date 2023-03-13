@@ -1,5 +1,7 @@
-const { getQuery, getByIdQuery, rowNotFoundResult } = require("../utils/db.js");
+const { getQuery, getByIdQuery } = require('../utils/db');
+const { rowNotFoundResult } = require('../utils/error');
 const sql = require("./db.js");
+const { SMA_USER, USER } = require("../constants/tables");
 
 // User constructor
 const User = function(user) {
@@ -67,7 +69,7 @@ const User = function(user) {
 
 // Result all sma_user from the database
 User.getAll = result => {
-    const query = getQuery("sma_user");
+    const query = getQuery(SMA_USER);
     sql.query(query, (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -81,7 +83,7 @@ User.getAll = result => {
 
 // Result a sma_user filtered from id from the database
 User.findById = (id, result) => {
-  const query = getByIdQuery("sma_user", id);
+  const query = getByIdQuery(SMA_USER, id);
   sql.query(query, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -94,7 +96,7 @@ User.findById = (id, result) => {
       return;
     }
 
-    result(rowNotFoundResult("User"));
+    result(rowNotFoundResult(USER));
   });
 };
 

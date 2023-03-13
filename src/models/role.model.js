@@ -1,5 +1,7 @@
-const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
+const { getQuery, getByIdQuery } = require('../utils/db');
+const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
+const { SMA_ROLE, ROLE } = require('../constants/tables');
 
 // Role constructor
 const Role = function(role) {
@@ -9,7 +11,7 @@ const Role = function(role) {
 
 // Result all sma_role from the database
 Role.getAll = result =>   {
-    const query = getQuery("sma_role");
+    const query = getQuery(SMA_ROLE);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -22,7 +24,7 @@ Role.getAll = result =>   {
 
 // Result a sma_role filtered from id from the database
 Role.findById = (id, result) => {
-    const query = getByIdQuery("sma_role", id);
+    const query = getByIdQuery(SMA_ROLE, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -34,8 +36,8 @@ Role.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-        
-        result(rowNotFoundResult("Role"));
+
+        result(rowNotFoundResult(ROLE));
     });
 };
 

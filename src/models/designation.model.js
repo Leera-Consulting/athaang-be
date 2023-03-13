@@ -1,5 +1,7 @@
-const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
+const { getQuery, getByIdQuery } = require('../utils/db');
+const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
+const { SMA_DESIGNATION, DESIGNATION } = require("../constants/tables");
 
 // Designation constructor
 const Designation = function(designation) {
@@ -10,7 +12,7 @@ const Designation = function(designation) {
 
 // Result all sma_designation from the database
 Designation.getAll = result =>   {
-    const query = getQuery("sma_designation");
+    const query = getQuery(SMA_DESIGNATION);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -23,7 +25,7 @@ Designation.getAll = result =>   {
 
 // Result a sma_designation filtered from id from the database
 Designation.findById = (id, result) => {
-    const query = getByIdQuery("sma_designation", id);
+    const query = getByIdQuery(SMA_DESIGNATION, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -36,7 +38,7 @@ Designation.findById = (id, result) => {
             return;
         }
   
-        result(rowNotFoundResult("Designation"));
+        result(rowNotFoundResult(DESIGNATION));
     });
 };
 
