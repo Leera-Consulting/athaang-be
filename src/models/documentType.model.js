@@ -1,5 +1,7 @@
-const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
+const { getQuery, getByIdQuery } = require('../utils/db');
+const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
+const { SMA_DOCUMENT_TYPE } = require("../constants/tables");
 
 // Document type constructor
 const DepartmentType = function(departmentType) {
@@ -10,7 +12,7 @@ const DepartmentType = function(departmentType) {
 
 // Result all sma_document_type from the database
 DepartmentType.getAll = result =>   {
-    const query = getQuery("sma_document_type");
+    const query = getQuery(SMA_DOCUMENT_TYPE);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -23,7 +25,7 @@ DepartmentType.getAll = result =>   {
 
 // Result a sma_document_type filtered from id from the database
 DepartmentType.findById = (id, result) => {
-    const query = getByIdQuery("sma_document_type", id);
+    const query = getByIdQuery(SMA_DOCUMENT_TYPE, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);

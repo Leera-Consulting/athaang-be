@@ -1,5 +1,7 @@
-const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
+const { getQuery, getByIdQuery } = require('../utils/db');
+const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
+const { SMA_DEPARTMENT } = require("../constants/tables");
 
 // Department constructor
 const Department = function(department) {
@@ -11,7 +13,7 @@ const Department = function(department) {
 
 // Result all sma_department from the database
 Department.getAll = result =>   {
-    const query = getQuery("sma_department");
+    const query = getQuery(SMA_DEPARTMENT);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -24,7 +26,7 @@ Department.getAll = result =>   {
 
 // Result a sma_department filtered from id from the database
 Department.findById = (id, result) => {
-    const query = getByIdQuery("sma_department", id);
+    const query = getByIdQuery(SMA_DEPARTMENT, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);

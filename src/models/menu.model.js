@@ -1,5 +1,7 @@
-const { getQuery, getByIdQuery, rowNotFoundResult } = require('../utils/db.js');
+const { getQuery, getByIdQuery } = require('../utils/db');
+const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
+const { SMA_MENU } = require("../constants/tables")
 
 // Menu constructor
 const Menu = function(menu) {
@@ -18,7 +20,7 @@ const Menu = function(menu) {
 
 // Result all sma_menu from the database
 Menu.getAll = result =>   {
-    const query = getQuery("sma_menu");
+    const query = getQuery(SMA_MENU);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -31,7 +33,7 @@ Menu.getAll = result =>   {
 
 // Result a sma_menu filtered from id from the database
 Menu.findById = (id, result) => {
-    const query = getByIdQuery("sma_menu", id);
+    const query = getByIdQuery(SMA_MENU, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
