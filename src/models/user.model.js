@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require("./db.js");
 const { SMA_USER, USER } = require("../constants/tables");
@@ -76,7 +76,7 @@ User.getAll = result => {
         result(null, err);
         return;
       }
-  
+
       result(null, res);
     });
 };
@@ -99,5 +99,34 @@ User.findById = (id, result) => {
     result(rowNotFoundResult(USER));
   });
 };
+
+// Update a user filtered from id from the database
+User.updateById = (requestBody, result) => {
+  const query = putByIdQuery(SMA_USER, requestBody);
+  sql.query(query, (err, res) => {
+      if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+      }
+
+      result(null, res);
+  });
+}
+
+// Insert a user into the database
+User.insert = (requestBody, result) => {
+  const query = postByIdQuery(SMA_USER, requestBody);
+  console.log(query)
+  sql.query(query, (err, res) => {
+      if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+      }
+
+      result(null, res);
+  });
+}
 
 module.exports = User;

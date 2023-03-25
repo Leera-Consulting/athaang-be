@@ -1,16 +1,16 @@
-const DocumentType = require('../models/documentType.model');
+const Help = require('../models/help.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all document types
+// Responses for fetching all help
 exports.findAll = (req, res) => {
 
-    DocumentType.getAll((err, data) => {
+    Help.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving document type."
+                message: sqlErrorMessage || "Some error occurred while retrieving help."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a document type by id
+// Responses for fetching a help by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    DocumentType.findById(id, (err, data) => {
+    Help.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving document type."
+                message: sqlErrorMessage || "Some error occurred while retrieving help."
             });
         }
         else res.status(200).send({
@@ -42,17 +42,17 @@ exports.findById = (req, res) => {
     })
 };
 
-// Edit document type by id
+// Edit help by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    DocumentType.updateById(requestBody, (err, data) => {
+    Help.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing document type."
+                message: sqlErrorMessage || "Some error occurred while editing help."
             })
         } else {
             res.status(200).send({
@@ -63,17 +63,17 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert main menu by id
+// Insert help
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    DocumentType.insert(requestBody, (err, data) => {
+    Help.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing main menu."
+                message: sqlErrorMessage || "Some error occurred while editing help."
             })
         } else {
             res.status(200).send({

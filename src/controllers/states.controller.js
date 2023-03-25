@@ -1,16 +1,16 @@
-const DocumentType = require('../models/documentType.model');
+const States = require('../models/states.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all document types
+// Responses for fetching all statess
 exports.findAll = (req, res) => {
 
-    DocumentType.getAll((err, data) => {
+    States.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving document type."
+                message: sqlErrorMessage || "Some error occurred while retrieving states."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a document type by id
+// Responses for fetching a states by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    DocumentType.findById(id, (err, data) => {
+    States.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving document type."
+                message: sqlErrorMessage || "Some error occurred while retrieving states."
             });
         }
         else res.status(200).send({
@@ -42,17 +42,17 @@ exports.findById = (req, res) => {
     })
 };
 
-// Edit document type by id
+// Edit states by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    DocumentType.updateById(requestBody, (err, data) => {
+    States.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing document type."
+                message: sqlErrorMessage || "Some error occurred while editing states."
             })
         } else {
             res.status(200).send({
@@ -63,17 +63,17 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert main menu by id
+// Insert states
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    DocumentType.insert(requestBody, (err, data) => {
+    States.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing main menu."
+                message: sqlErrorMessage || "Some error occurred while editing states."
             })
         } else {
             res.status(200).send({

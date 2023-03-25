@@ -1,16 +1,19 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { COMPANY } = require("../constants/tables");
+const { SMA_LOCATION, LOCATION } = require("../constants/tables");
 
-// Company constructor
-const Company = function(company) {
-    this.id = company.id;
+// Location constructor
+const Location = function(location) {
+    this.id = location.id;
+    this.loc_name = location.loc_name;
+    this.loc_code = location.loc_code;
+    this.loc_comp_id = location.loc_comp_id;
 }
 
-// Result all company from the database
-Company.getAll = result =>   {
-    const query = getQuery(COMPANY);
+// Result all sma_location from the database
+Location.getAll = result =>   {
+    const query = getQuery(SMA_LOCATION);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -21,9 +24,9 @@ Company.getAll = result =>   {
     });
 };
 
-// Result a company filtered from id from the database
-Company.findById = (id, result) => {
-    const query = getByIdQuery(COMPANY, id);
+// Result a sma_location filtered from id from the database
+Location.findById = (id, result) => {
+    const query = getByIdQuery(SMA_LOCATION, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -35,14 +38,14 @@ Company.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-
-        result(rowNotFoundResult(COMPANY));
+  
+        result(rowNotFoundResult(LOCATION));
     });
 };
 
-// Update a company filtered from id from the database
-Company.updateById = (requestBody, result) => {
-    const query = putByIdQuery(COMPANY, requestBody);
+// Update a sma_location filtered from id from the database
+Location.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_LOCATION, requestBody);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -54,9 +57,9 @@ Company.updateById = (requestBody, result) => {
     });
 }
 
-// Insert a company into the database
-Company.insert = (requestBody, result) => {
-    const query = postByIdQuery(COMPANY, requestBody);
+// Insert a Location into the database
+Location.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_LOCATION, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -69,4 +72,4 @@ Company.insert = (requestBody, result) => {
     });
 }
 
-module.exports = Company;
+module.exports = Location;

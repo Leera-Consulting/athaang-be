@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_ROLE, ROLE } = require('../constants/tables');
@@ -40,5 +40,34 @@ Role.findById = (id, result) => {
         result(rowNotFoundResult(ROLE));
     });
 };
+
+// Update a role filtered from id from the database
+Role.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_ROLE, requestBody);
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Insert a role into the database
+Role.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_ROLE, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
 
 module.exports = Role;

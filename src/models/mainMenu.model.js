@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_MAIN_MENU, MAIN_MENU } = require("../constants/tables");
@@ -44,5 +44,34 @@ MainMenu.findById = (id, result) => {
         result(rowNotFoundResult(MAIN_MENU));
     });
 };
+
+// Update a main menu filtered from id from the database
+MainMenu.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_MAIN_MENU, requestBody);
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Insert a main menu into the database
+MainMenu.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_MAIN_MENU, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
 
 module.exports = MainMenu;

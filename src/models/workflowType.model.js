@@ -1,16 +1,18 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { COMPANY } = require("../constants/tables");
+const { SMA_WORKFLOW_TYPE, WORKFLOW_TYPE } = require("../constants/tables");
 
-// Company constructor
-const Company = function(company) {
-    this.id = company.id;
+// Workflow Type constructor
+const WorkflowType = function(workflowType) {
+    this.id = workflowType.id;
+    this.order_no = workflowType.order_no;
+    this.special_terms = workflowType.special_terms;
 }
 
-// Result all company from the database
-Company.getAll = result =>   {
-    const query = getQuery(COMPANY);
+// Result all workflowType from the database
+WorkflowType.getAll = result =>   {
+    const query = getQuery(SMA_WORKFLOW_TYPE);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -21,9 +23,9 @@ Company.getAll = result =>   {
     });
 };
 
-// Result a company filtered from id from the database
-Company.findById = (id, result) => {
-    const query = getByIdQuery(COMPANY, id);
+// Result a workflowType filtered from id from the database
+WorkflowType.findById = (id, result) => {
+    const query = getByIdQuery(SMA_WORKFLOW_TYPE, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -35,14 +37,14 @@ Company.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-
-        result(rowNotFoundResult(COMPANY));
+  
+        result(rowNotFoundResult(WORKFLOW_TYPE));
     });
 };
 
-// Update a company filtered from id from the database
-Company.updateById = (requestBody, result) => {
-    const query = putByIdQuery(COMPANY, requestBody);
+// Update a workflowType filtered from id from the database
+WorkflowType.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_WORKFLOW_TYPE, requestBody);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -54,9 +56,9 @@ Company.updateById = (requestBody, result) => {
     });
 }
 
-// Insert a company into the database
-Company.insert = (requestBody, result) => {
-    const query = postByIdQuery(COMPANY, requestBody);
+// Insert a workflowType into the database
+WorkflowType.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_WORKFLOW_TYPE, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -69,4 +71,4 @@ Company.insert = (requestBody, result) => {
     });
 }
 
-module.exports = Company;
+module.exports = WorkflowType;

@@ -6,6 +6,12 @@ module.exports = app => {
     // Retrieve menu(s)
     router.get("/", menu.findAll);
     router.get("/:id", menu.findById);
+
+    // Edit menu
+    router.put("/edit", menu.updateById);
+
+    // Create main menu
+    router.post("/create", menu.insert);
   
     app.use('/api/menu', router);
 };

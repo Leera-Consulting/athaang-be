@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_DEPARTMENT, DEPARTMENT } = require("../constants/tables");
@@ -42,5 +42,34 @@ Department.findById = (id, result) => {
         result(rowNotFoundResult(DEPARTMENT));
     });
 };
+
+// Update a sma_department filtered from id from the database
+Department.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_DEPARTMENT, requestBody);
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Insert a department into the database
+Department.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_DEPARTMENT, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
 
 module.exports = Department;

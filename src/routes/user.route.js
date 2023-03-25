@@ -6,6 +6,12 @@ module.exports = app => {
     // Retrieve user(s)
     router.get("/", user.findAll);
     router.get("/:id", user.findById);
+
+    // Edit user
+    router.put("/edit", user.updateById);
   
+    // Create main menu
+    router.post("/create", user.insert);
+
     app.use('/api/user', router);
 };

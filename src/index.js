@@ -20,6 +20,15 @@ require("./routes/mainMenu.route.js")(app);
 require("./routes/menu.route.js")(app);
 require("./routes/documentType.route.js")(app);
 require("./routes/company.route.js")(app);
+require("./routes/location.route.js")(app);
+require("./routes/states.route.js")(app);
+require("./routes/term.route.js")(app);
+require("./routes/smtpDetail.route.js")(app);
+require("./routes/cities.route.js")(app);
+require("./routes/help.route.js")(app);
+require("./routes/financialYear.route.js")(app);
+require("./routes/workflowType.route.js")(app);
+
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', `${process.env.HOST_URL}/${process.env.PORT}`);

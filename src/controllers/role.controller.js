@@ -41,3 +41,45 @@ exports.findById = (req, res) => {
         })
     })
 };
+
+// Edit role by id
+exports.updateById = (req, res) => {
+    const requestBody = req.body;
+
+    Role.updateById(requestBody, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while editing role."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
+// Insert main menu by id
+exports.insert = (req, res) => {
+    const requestBody = req.body;
+
+    Role.insert(requestBody, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while editing main menu."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}

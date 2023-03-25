@@ -24,9 +24,9 @@ function handleSqlErrorMessage(err) {
         case ER_NO_SUCH_TABLE:
             return "No such table exists";
         case ER_BAD_FIELD_ERROR:
-            return "The requested value does not exist";
+            return "The requested column does not exist";
         case ER_TOO_LONG_IDENT:
-            return "The data provided is too long";
+            return "The identifier provided is too long";
         case ER_DUP_KEYNAME:
             return "The key with this name already exists";
         case ER_WRONG_FIELD_SPEC:
@@ -34,7 +34,7 @@ function handleSqlErrorMessage(err) {
         case ER_EMPTY_QUERY:
             return "No operation was executed";
         case ER_PARSE_ERROR:
-            return "Incorrect format of data was provided";
+            return "Incorrect format of payload was provided";
         case ER_TOO_LONG_KEY:
             return "The provided key length is too long";
         case ER_KEY_COLUMN_DOES_NOT_EXITS:

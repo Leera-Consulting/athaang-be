@@ -6,6 +6,12 @@ module.exports = app => {
     // Retrieve role(s)
     router.get("/", role.findAll);
     router.get("/:id", role.findById);
+
+    // Edit role
+    router.put("/edit", role.updateById);
+
+    // Create main menu
+    router.post("/create", role.insert);
   
     app.use('/api/role', router);
 };

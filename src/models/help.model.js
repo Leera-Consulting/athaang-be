@@ -1,16 +1,20 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { COMPANY } = require("../constants/tables");
+const { SMA_HELP, HELP } = require("../constants/tables");
 
-// Company constructor
-const Company = function(company) {
-    this.id = company.id;
+// Help constructor
+const Help = function(help) {
+    this.id = help.id;
+    this.code = help.code;
+    this.description = help.description;
+    this.program_name = help.program_name;
+    this.status = help.status;
 }
 
-// Result all company from the database
-Company.getAll = result =>   {
-    const query = getQuery(COMPANY);
+// Result all sma_help from the database
+Help.getAll = result =>   {
+    const query = getQuery(SMA_HELP);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -21,9 +25,9 @@ Company.getAll = result =>   {
     });
 };
 
-// Result a company filtered from id from the database
-Company.findById = (id, result) => {
-    const query = getByIdQuery(COMPANY, id);
+// Result a sma_help filtered from id from the database
+Help.findById = (id, result) => {
+    const query = getByIdQuery(SMA_HELP, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -35,14 +39,14 @@ Company.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-
-        result(rowNotFoundResult(COMPANY));
+  
+        result(rowNotFoundResult(HELP));
     });
 };
 
-// Update a company filtered from id from the database
-Company.updateById = (requestBody, result) => {
-    const query = putByIdQuery(COMPANY, requestBody);
+// Update a sma_help filtered from id from the database
+Help.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_HELP, requestBody);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -54,9 +58,9 @@ Company.updateById = (requestBody, result) => {
     });
 }
 
-// Insert a company into the database
-Company.insert = (requestBody, result) => {
-    const query = postByIdQuery(COMPANY, requestBody);
+// Insert a sma_help into the database
+Help.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_HELP, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -69,4 +73,4 @@ Company.insert = (requestBody, result) => {
     });
 }
 
-module.exports = Company;
+module.exports = Help;

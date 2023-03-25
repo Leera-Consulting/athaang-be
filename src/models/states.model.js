@@ -1,16 +1,18 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { COMPANY } = require("../constants/tables");
+const { STATES } = require("../constants/tables");
 
-// Company constructor
-const Company = function(company) {
-    this.id = company.id;
+// States constructor
+const States = function(states) {
+    this.id = states.id;
+    this.country_id = states.country_id;
+    this.state_name = states.state_name;
 }
 
-// Result all company from the database
-Company.getAll = result =>   {
-    const query = getQuery(COMPANY);
+// Result all states from the database
+States.getAll = result =>   {
+    const query = getQuery(STATES);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -21,9 +23,9 @@ Company.getAll = result =>   {
     });
 };
 
-// Result a company filtered from id from the database
-Company.findById = (id, result) => {
-    const query = getByIdQuery(COMPANY, id);
+// Result a state filtered from id from the database
+States.findById = (id, result) => {
+    const query = getByIdQuery(STATES, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -35,14 +37,14 @@ Company.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-
-        result(rowNotFoundResult(COMPANY));
+  
+        result(rowNotFoundResult(STATES));
     });
 };
 
-// Update a company filtered from id from the database
-Company.updateById = (requestBody, result) => {
-    const query = putByIdQuery(COMPANY, requestBody);
+// Update a states filtered from id from the database
+States.updateById = (requestBody, result) => {
+    const query = putByIdQuery(STATES, requestBody);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -54,9 +56,9 @@ Company.updateById = (requestBody, result) => {
     });
 }
 
-// Insert a company into the database
-Company.insert = (requestBody, result) => {
-    const query = postByIdQuery(COMPANY, requestBody);
+// Insert a state into the database
+States.insert = (requestBody, result) => {
+    const query = postByIdQuery(STATES, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -69,4 +71,4 @@ Company.insert = (requestBody, result) => {
     });
 }
 
-module.exports = Company;
+module.exports = States;

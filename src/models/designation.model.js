@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_DESIGNATION, DESIGNATION } = require("../constants/tables");
@@ -41,5 +41,35 @@ Designation.findById = (id, result) => {
         result(rowNotFoundResult(DESIGNATION));
     });
 };
+
+// Update a designation filtered from id from the database
+Designation.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_DESIGNATION, requestBody);
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Insert a designation into the database
+Designation.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_DESIGNATION, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
 
 module.exports = Designation;

@@ -1,16 +1,16 @@
-const DocumentType = require('../models/documentType.model');
+const Term = require('../models/term.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all document types
+// Responses for fetching all term
 exports.findAll = (req, res) => {
 
-    DocumentType.getAll((err, data) => {
+    Term.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving document type."
+                message: sqlErrorMessage || "Some error occurred while retrieving term."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a document type by id
+// Responses for fetching a term by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    DocumentType.findById(id, (err, data) => {
+    Term.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving document type."
+                message: sqlErrorMessage || "Some error occurred while retrieving term."
             });
         }
         else res.status(200).send({
@@ -42,17 +42,17 @@ exports.findById = (req, res) => {
     })
 };
 
-// Edit document type by id
+// Edit terms by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    DocumentType.updateById(requestBody, (err, data) => {
+    Term.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing document type."
+                message: sqlErrorMessage || "Some error occurred while editing term."
             })
         } else {
             res.status(200).send({
@@ -63,17 +63,17 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert main menu by id
+// Insert term
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    DocumentType.insert(requestBody, (err, data) => {
+    Term.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing main menu."
+                message: sqlErrorMessage || "Some error occurred while editing term."
             })
         } else {
             res.status(200).send({

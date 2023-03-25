@@ -41,3 +41,45 @@ exports.findById = (req, res) => {
         })
     })
 };
+
+// Edit main menu by id
+exports.updateById = (req, res) => {
+    const requestBody = req.body;
+
+    MainMenu.updateById(requestBody, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while editing main menu."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
+// Insert main menu by id
+exports.insert = (req, res) => {
+    const requestBody = req.body;
+
+    MainMenu.insert(requestBody, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while editing main menu."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}

@@ -6,6 +6,12 @@ module.exports = app => {
     // Retrieve main menu(s)
     router.get("/", mainMenu.findAll);
     router.get("/:id", mainMenu.findById);
+
+    // Edit main menu
+    router.put("/edit", mainMenu.updateById);
+
+    // Create main menu
+    router.post("/create", mainMenu.insert);
   
     app.use('/api/main-menu', router);
 };

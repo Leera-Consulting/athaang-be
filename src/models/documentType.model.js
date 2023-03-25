@@ -1,17 +1,17 @@
-const { getQuery, getByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_DOCUMENT_TYPE } = require("../constants/tables");
+const { SMA_DOCUMENT_TYPE, DOCUMENT_TYPE } = require("../constants/tables");
 
 // Document type constructor
-const DepartmentType = function(departmentType) {
+const DocumentType = function(departmentType) {
     this.id = departmentType.id;
     this.document = departmentType.document;
     this.status = departmentType.status;
 }
 
 // Result all sma_document_type from the database
-DepartmentType.getAll = result =>   {
+DocumentType.getAll = result =>   {
     const query = getQuery(SMA_DOCUMENT_TYPE);
     sql.query(query, (err, res) => {
         if (err)    {
@@ -24,7 +24,7 @@ DepartmentType.getAll = result =>   {
 };
 
 // Result a sma_document_type filtered from id from the database
-DepartmentType.findById = (id, result) => {
+DocumentType.findById = (id, result) => {
     const query = getByIdQuery(SMA_DOCUMENT_TYPE, id);
     sql.query(query, (err, res) => {
         if (err) {
@@ -38,8 +38,37 @@ DepartmentType.findById = (id, result) => {
             return;
         }
 
-        result(rowNotFoundResult("Document Type"));
+        result(rowNotFoundResult(DOCUMENT_TYPE));
     });
 };
 
-module.exports = DepartmentType;
+// Update a document type filtered from id from the database
+DocumentType.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_DOCUMENT_TYPE, requestBody);
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Insert a document type into the database
+DocumentType.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_DOCUMENT_TYPE, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+module.exports = DocumentType;

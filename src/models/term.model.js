@@ -1,16 +1,18 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { COMPANY } = require("../constants/tables");
+const { SMA_TERM, TERM } = require("../constants/tables");
 
-// Company constructor
-const Company = function(company) {
-    this.id = company.id;
+// Term constructor
+const Term = function(term) {
+    this.id = term.id;
+    this.order_no = term.order_no;
+    this.special_terms = term.special_terms;
 }
 
-// Result all company from the database
-Company.getAll = result =>   {
-    const query = getQuery(COMPANY);
+// Result all term from the database
+Term.getAll = result =>   {
+    const query = getQuery(SMA_TERM);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -21,9 +23,9 @@ Company.getAll = result =>   {
     });
 };
 
-// Result a company filtered from id from the database
-Company.findById = (id, result) => {
-    const query = getByIdQuery(COMPANY, id);
+// Result a term filtered from id from the database
+Term.findById = (id, result) => {
+    const query = getByIdQuery(SMA_TERM, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -35,14 +37,14 @@ Company.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-
-        result(rowNotFoundResult(COMPANY));
+  
+        result(rowNotFoundResult(TERM));
     });
 };
 
-// Update a company filtered from id from the database
-Company.updateById = (requestBody, result) => {
-    const query = putByIdQuery(COMPANY, requestBody);
+// Update a term filtered from id from the database
+Term.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_TERM, requestBody);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -54,9 +56,9 @@ Company.updateById = (requestBody, result) => {
     });
 }
 
-// Insert a company into the database
-Company.insert = (requestBody, result) => {
-    const query = postByIdQuery(COMPANY, requestBody);
+// Insert a term into the database
+Term.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_TERM, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -69,4 +71,4 @@ Company.insert = (requestBody, result) => {
     });
 }
 
-module.exports = Company;
+module.exports = Term;

@@ -1,16 +1,18 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { COMPANY } = require("../constants/tables");
+const { SMTP_DETAIL, SMTP_DTL } = require("../constants/tables");
 
-// Company constructor
-const Company = function(company) {
-    this.id = company.id;
+// SMTP detail constructor
+const SmtpDetail = function(smptDetail) {
+    this.id = smptDetail.id;
+    this.country_id = smptDetail.country_id;
+    this.state_name = smptDetail.state_name;
 }
 
-// Result all company from the database
-Company.getAll = result =>   {
-    const query = getQuery(COMPANY);
+// Result all SMTP detail from the database
+SmtpDetail.getAll = result =>   {
+    const query = getQuery(SMTP_DTL);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -21,9 +23,9 @@ Company.getAll = result =>   {
     });
 };
 
-// Result a company filtered from id from the database
-Company.findById = (id, result) => {
-    const query = getByIdQuery(COMPANY, id);
+// Result a SMTP detail filtered from id from the database
+SmtpDetail.findById = (id, result) => {
+    const query = getByIdQuery(SMTP_DTL, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -35,14 +37,14 @@ Company.findById = (id, result) => {
             result(null, res[0]);
             return;
         }
-
-        result(rowNotFoundResult(COMPANY));
+  
+        result(rowNotFoundResult(SMTP_DETAIL));
     });
 };
 
-// Update a company filtered from id from the database
-Company.updateById = (requestBody, result) => {
-    const query = putByIdQuery(COMPANY, requestBody);
+// Update a SMTP detail filtered from id from the database
+SmtpDetail.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMTP_DTL, requestBody);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -54,9 +56,9 @@ Company.updateById = (requestBody, result) => {
     });
 }
 
-// Insert a company into the database
-Company.insert = (requestBody, result) => {
-    const query = postByIdQuery(COMPANY, requestBody);
+// Insert a SMTP detail into the database
+SmtpDetail.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMTP_DTL, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -69,4 +71,4 @@ Company.insert = (requestBody, result) => {
     });
 }
 
-module.exports = Company;
+module.exports = SmtpDetail;
