@@ -28,6 +28,15 @@ require("./routes/cities.route.js")(app);
 require("./routes/help.route.js")(app);
 require("./routes/financialYear.route.js")(app);
 require("./routes/workflowType.route.js")(app);
+require("./routes/productGroup.route.js")(app);
+require("./routes/product.route.js")(app);
+require("./routes/units.route.js")(app);
+require("./routes/budgetName.route.js")(app);
+require("./routes/budgetSubgroup.route.js")(app);
+require("./routes/category.route.js")(app);
+require("./routes/type.route.js")(app);
+require("./routes/accountGroup.route.js")(app);
+require("./routes/gstMaster.route.js")(app);
 
 
 app.use(function(req, res, next) {
