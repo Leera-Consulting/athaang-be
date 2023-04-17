@@ -37,6 +37,8 @@ require("./routes/category.route.js")(app);
 require("./routes/type.route.js")(app);
 require("./routes/accountGroup.route.js")(app);
 require("./routes/gstMaster.route.js")(app);
+require("./routes/travelApproval.route.js")(app);
+require("./routes/travelExpense.route.js")(app);
 
 
 app.use(function(req, res, next) {

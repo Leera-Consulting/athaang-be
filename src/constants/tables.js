@@ -44,6 +44,10 @@ const TYPE = "TYPE";
 const SMA_ACCOUNT_GROUP = "sma_account_group";
 const ACCOUNT_GROUP = "ACCOUNT_GROUP";
 const GST_MST = "GST_MST";
+const SMA_TRAVAL_APPROVAL = "sma_traval_approval";
+const TRAVEL_APPROVAL = "TRAVEL_APPROVAL";
+const SMA_TRAVEL_EXPENSES = "sma_travel_expenses";
+const TRAVEL_EXPENSES = "TRAVEL_EXPENSES";
 
 module.exports = {
     SMA_USER,
@@ -91,5 +95,9 @@ module.exports = {
     TYPE,
     SMA_ACCOUNT_GROUP,
     ACCOUNT_GROUP,
-    GST_MST
+    GST_MST,
+    SMA_TRAVAL_APPROVAL,
+    TRAVEL_APPROVAL,
+    SMA_TRAVEL_EXPENSES,
+    TRAVEL_EXPENSES
 }
