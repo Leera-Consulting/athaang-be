@@ -48,6 +48,19 @@ const SMA_TRAVAL_APPROVAL = "sma_traval_approval";
 const TRAVEL_APPROVAL = "TRAVEL_APPROVAL";
 const SMA_TRAVEL_EXPENSES = "sma_travel_expenses";
 const TRAVEL_EXPENSES = "TRAVEL_EXPENSES";
+const PAYMENT_HEADER = "PAYMENT_HEADER";
+const SMA_PETTYCASH = "sma_pettycash";
+const PETTYCASH = "PETTYCASH";
+const SMA_APPROVAL_MEMO = "sma_approval_memo";
+const APPROVAL_MEMO = "APPROVAL_MEMO";
+const SMA_PURCHASE_ORDER = "sma_purchase_order";
+const PURCHASE_ORDER = "PURCHASE_ORDER";
+const SMA_PARTY_MST = "sma_party_mst";
+const PARTY_MST = "PARTY_MST";
+const SMA_SUPPLIER_INVOICE = "sma_supplier_invoice";
+const SUPPLIER_INVOICE = "SUPPLIER_INVOICE";
+const SMA_BUDGET = "sma_budget";
+const BUDGET = "BUDGET";
 
 module.exports = {
     SMA_USER,
@@ -99,5 +112,18 @@ module.exports = {
     SMA_TRAVAL_APPROVAL,
     TRAVEL_APPROVAL,
     SMA_TRAVEL_EXPENSES,
-    TRAVEL_EXPENSES
+    TRAVEL_EXPENSES,
+    PAYMENT_HEADER,
+    SMA_PETTYCASH,
+    PETTYCASH,
+    SMA_APPROVAL_MEMO,
+    APPROVAL_MEMO,
+    SMA_PURCHASE_ORDER,
+    PURCHASE_ORDER,
+    SMA_PARTY_MST,
+    PARTY_MST,
+    SMA_SUPPLIER_INVOICE,
+    SUPPLIER_INVOICE,
+    SMA_BUDGET,
+    BUDGET
 }

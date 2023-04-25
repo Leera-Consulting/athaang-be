@@ -39,6 +39,13 @@ require("./routes/accountGroup.route.js")(app);
 require("./routes/gstMaster.route.js")(app);
 require("./routes/travelApproval.route.js")(app);
 require("./routes/travelExpense.route.js")(app);
+require("./routes/paymentHeader.route.js")(app);
+require("./routes/pettycash.route.js")(app);
+require("./routes/approvalMemo.route.js")(app);
+require("./routes/purchaseOrder.route.js")(app);
+require("./routes/partyMst.route.js")(app);
+require("./routes/supplierInvoice.route.js")(app);
+require("./routes/budget.route.js")(app);
 
 
 app.use(function(req, res, next) {
