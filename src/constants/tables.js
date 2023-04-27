@@ -61,6 +61,9 @@ const SMA_SUPPLIER_INVOICE = "sma_supplier_invoice";
 const SUPPLIER_INVOICE = "SUPPLIER_INVOICE";
 const SMA_BUDGET = "sma_budget";
 const BUDGET = "BUDGET";
+const SMA_BUDGET_TYPE = "sma_budget_type";
+const BUDGET_TYPE = "BUDGET_TYPE";
+const BUDGET_ADJUST = "BUDGET_ADJUST";
 
 module.exports = {
     SMA_USER,
@@ -125,5 +128,8 @@ module.exports = {
     SMA_SUPPLIER_INVOICE,
     SUPPLIER_INVOICE,
     SMA_BUDGET,
-    BUDGET
+    BUDGET,
+    SMA_BUDGET_TYPE,
+    BUDGET_TYPE,
+    BUDGET_ADJUST
 }

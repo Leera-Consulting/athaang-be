@@ -46,6 +46,8 @@ require("./routes/purchaseOrder.route.js")(app);
 require("./routes/partyMst.route.js")(app);
 require("./routes/supplierInvoice.route.js")(app);
 require("./routes/budget.route.js")(app);
+require("./routes/budgetType.route.js")(app);
+require("./routes/budgetAdjust.route.js")(app);
 
 
 app.use(function(req, res, next) {
