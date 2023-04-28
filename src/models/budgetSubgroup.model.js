@@ -56,7 +56,7 @@ BudgetSubgroup.updateById = (requestBody, result) => {
 
 // Insert a SMA_BUDGET_SUBGROUP into the database
 BudgetSubgroup.insert = (requestBody, result) => {
-    const query = postByIdQuery(SMA_BUDGET_NAME, requestBody);
+    const query = postByIdQuery(SMA_BUDGET_SUBGROUP, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
