@@ -64,6 +64,7 @@ const BUDGET = "BUDGET";
 const SMA_BUDGET_TYPE = "sma_budget_type";
 const BUDGET_TYPE = "BUDGET_TYPE";
 const BUDGET_ADJUST = "BUDGET_ADJUST";
+const ACCOUNT_MST = "account_mst";
 
 module.exports = {
     SMA_USER,
@@ -131,5 +132,6 @@ module.exports = {
     BUDGET,
     SMA_BUDGET_TYPE,
     BUDGET_TYPE,
-    BUDGET_ADJUST
+    BUDGET_ADJUST,
+    ACCOUNT_MST
 }

@@ -48,6 +48,7 @@ require("./routes/supplierInvoice.route.js")(app);
 require("./routes/budget.route.js")(app);
 require("./routes/budgetType.route.js")(app);
 require("./routes/budgetAdjust.route.js")(app);
+require("./routes/accountMst.route.js")(app);
 
 
 app.use(function(req, res, next) {
