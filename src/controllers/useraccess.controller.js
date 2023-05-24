@@ -1,16 +1,16 @@
-const TravelExpense = require('../models/travelExpense.model');
+const Useraccess = require('../models/useraccess.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all travel expenses
+// Responses for fetching all useraccess
 exports.findAll = (req, res) => {
 
-    TravelExpense.getAll((err, data) => {
+    Useraccess.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving term."
+                message: sqlErrorMessage || "Some error occurred while retrieving workflow history."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a travel expenses by id
+// Responses for fetching a Useraccess by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    TravelExpense.findById(id, (err, data) => {
+    Useraccess.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving term."
+                message: sqlErrorMessage || "Some error occurred while retrieving workflow history."
             });
         }
         else res.status(200).send({
@@ -42,17 +42,17 @@ exports.findById = (req, res) => {
     })
 };
 
-// Edit travel expense by id
+// Edit Useraccess by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    TravelExpense.updateById(requestBody, (err, data) => {
+    Useraccess.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing term."
+                message: sqlErrorMessage || "Some error occurred while editing workflow history."
             })
         } else {
             res.status(200).send({
@@ -63,17 +63,38 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert travel expense
+// Bulk Edit Useraccess by id
+exports.bulkUpdateById = (req, res) => {
+    const requestBody = req.body;
+
+    Useraccess.bulkUpdateById(requestBody, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while editing workflow history."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
+// Insert Useraccess
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    TravelExpense.insert(requestBody, (err, data) => {
+    Useraccess.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing term."
+                message: sqlErrorMessage || "Some error occurred while editing workflow history."
             })
         } else {
             res.status(200).send({
@@ -84,22 +105,24 @@ exports.insert = (req, res) => {
     })
 }
 
-// Responses for fetching all reimbursements
-exports.getAllReimbursements = (req, res) => {
 
-    TravelExpense.getAllReimbursements((err, data) => {
+// Find Useraccess of a user role
+exports.findUseraccessOfUserRole = (req, res) => {
+    const { user_role } = req.params;
+
+    Useraccess.getUseraccessOfUserRole(user_role, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving reimbursements."
-            });
+                message: sqlErrorMessage || "Some error occurred while fetching useraccess."
+            })
         } else {
             res.status(200).send({
                 success: true,
                 data: data
-            });
+            })
         }
     })
-};
+}

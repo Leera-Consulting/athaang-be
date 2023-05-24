@@ -5,13 +5,16 @@ module.exports = app => {
   
     // Retrieve travel expenses
     router.get("/", travelExpense.findAll);
-    router.get("/:id", travelExpense.findById);
+    router.get("/fetch/:id", travelExpense.findById);
 
     // Edit travel expense
     router.put("/edit", travelExpense.updateById);
 
     // Create travel expense
     router.post("/create", travelExpense.insert);
+
+    // Retreive all reimbursements
+    router.get("/reimbursement", travelExpense.getAllReimbursements)
   
     app.use('/api/travelExpense', router);
 };

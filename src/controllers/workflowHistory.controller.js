@@ -1,16 +1,16 @@
-const WorkflowType = require('../models/workflowType.model');
+const WorkflowHistory = require('../models/workflowHistory.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all workflow type
+// Responses for fetching all workflow history
 exports.findAll = (req, res) => {
 
-    WorkflowType.getAll((err, data) => {
+    WorkflowHistory.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving workflow type."
+                message: sqlErrorMessage || "Some error occurred while retrieving workflow history."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a workflow type by id
+// Responses for fetching a workflow history by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    WorkflowType.findById(id, (err, data) => {
+    WorkflowHistory.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving workflow type."
+                message: sqlErrorMessage || "Some error occurred while retrieving workflow history."
             });
         }
         else res.status(200).send({
@@ -42,17 +42,17 @@ exports.findById = (req, res) => {
     })
 };
 
-// Edit workflow type by id
+// Edit workflow history by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    WorkflowType.updateById(requestBody, (err, data) => {
+    WorkflowHistory.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing workflow type."
+                message: sqlErrorMessage || "Some error occurred while editing workflow history."
             })
         } else {
             res.status(200).send({
@@ -63,11 +63,53 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert workflow type
+// Insert workflow history
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    WorkflowType.insert(requestBody, (err, data) => {
+    WorkflowHistory.insert(requestBody, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while editing workflow history."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
+// Result all workflowHistory of a given document from the database
+exports.findWorkflowHistoryOfDocument = (req, res) => {
+    const { doc_id } = req.params;
+
+    WorkflowHistory.getWorkflowHistoryOfDocument(doc_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while fetching workflow history."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
+// Result workflow types for travel expenses
+exports.findTravelExpenseWorkhistory = (req, res) =>   {
+    const { te_id } = req.params;
+
+    WorkflowHistory.getTravelExpenseWorkhistory(te_id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
@@ -84,11 +126,11 @@ exports.insert = (req, res) => {
     })
 }
 
-// Result workflow types for travel/reimbursement
-exports.findReimbursementWorkflowTypes = (req, res) =>   {
-    const requestBody = req.body;
+// Result workflow types for reimbursement
+exports.findReimbursementWorkhistory = (req, res) =>   {
+    const { re_id } = req.params;
 
-    WorkflowType.getReimbursementWorkflowTypes(requestBody, (err, data) => {
+    WorkflowHistory.getReimbursementWorkhistory(re_id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
@@ -104,23 +146,3 @@ exports.findReimbursementWorkflowTypes = (req, res) =>   {
         }
     })
 }
-
-// Result workflow types for tender
-exports.fidAllTenderWorkflowTypes = (req, res) => {
-
-    WorkflowType.getAllTenderWorkflowTypes((err, data) => {
-        if (err)    {
-            const sqlErrorMessage = handleSqlErrorMessage(err);
-
-            res.status(500).send({
-                success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving workflow type."
-            });
-        } else {
-            res.status(200).send({
-                success: true,
-                data: data
-            });
-        }
-    })
-};

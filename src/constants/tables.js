@@ -65,6 +65,24 @@ const SMA_BUDGET_TYPE = "sma_budget_type";
 const BUDGET_TYPE = "BUDGET_TYPE";
 const BUDGET_ADJUST = "BUDGET_ADJUST";
 const ACCOUNT_MST = "account_mst";
+const BUDGET_VIEW = "budget_view";
+const SMA_TENDER_HEADER = "sma_tender_header";
+const TENDER_HEADER = "tender_header";
+const SMA_TENDER_SUPPLIER = "sma_tender_supplier";
+const TENDER_SUPPLIER = "tender_supplier";
+const WORKFLOW_HISTORY = "workflow_history";
+const FILE_UPLOADS = "file_uploads";
+const SMA_WORKFLOW = "sma_workflow";
+const USERACCESS = "useraccess";
+const SMA_EXPENSES = "sma_expenses";
+const SMA_DEPARTURE = "sma_departure";
+const DEPARTURE = "DEPARTURE";
+const TALLY_JOURNAL_ENTRY = "tally_journal_entry";
+const SMA_COMMENT = "sma_comment";
+const COMMENT = "COMMENT";
+const SMA_TENDER_SUPPLIER_QUOTE = "sma_tender_supplier_quote";
+const SMA_TENDER_TERMS = "sma_tender_terms";
+const TENDER_TERMS = "TENDER_TERMS";
 
 module.exports = {
     SMA_USER,
@@ -133,5 +151,23 @@ module.exports = {
     SMA_BUDGET_TYPE,
     BUDGET_TYPE,
     BUDGET_ADJUST,
-    ACCOUNT_MST
+    ACCOUNT_MST,
+    BUDGET_VIEW,
+    SMA_TENDER_HEADER,
+    TENDER_HEADER,
+    SMA_TENDER_SUPPLIER,
+    TENDER_SUPPLIER,
+    WORKFLOW_HISTORY,
+    FILE_UPLOADS,
+    SMA_WORKFLOW,
+    USERACCESS,
+    SMA_EXPENSES,
+    SMA_DEPARTURE,
+    DEPARTURE,
+    TALLY_JOURNAL_ENTRY,
+    SMA_COMMENT,
+    COMMENT,
+    SMA_TENDER_SUPPLIER_QUOTE,
+    SMA_TENDER_TERMS,
+    TENDER_TERMS
 }

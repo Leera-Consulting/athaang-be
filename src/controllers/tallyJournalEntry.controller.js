@@ -1,16 +1,16 @@
-const TravelApproval = require('../models/travelApproval.model');
+const TallyJournalEntry = require('../models/tallyJournalEntry.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all travel approval
+// Responses for fetching all TallyJournalEntry 
 exports.findAll = (req, res) => {
 
-    TravelApproval.getAll((err, data) => {
+    TallyJournalEntry.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving term."
+                message: sqlErrorMessage || "Some error occurred while retrieving TallyJournalEntry."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a travel approval by id
+// Responses for fetching a TallyJournalEntry by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    TravelApproval.findById(id, (err, data) => {
+    TallyJournalEntry.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving term."
+                message: sqlErrorMessage || "Some error occurred while retrieving TallyJournalEntry."
             });
         }
         else res.status(200).send({
@@ -42,17 +42,18 @@ exports.findById = (req, res) => {
     })
 };
 
-// Responses for fetching a travel approval approval ref no 
-exports.findAppovalRefNo = (req, res) => {
-    const { user_id } = req.params;
+// Responses for fetching TallyJournalEntry for travel expense
+exports.findForTravelExpense = (req, res) => {
+
+    const { te_id } = req.params;
   
-    TravelApproval.findAppovalRefNo(user_id, (err, data) => {
+    TallyJournalEntry.findForTravelExpense(te_id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving term."
+                message: sqlErrorMessage || "Some error occurred while retrieving TallyJournalEntry."
             });
         }
         else res.status(200).send({
@@ -60,19 +61,19 @@ exports.findAppovalRefNo = (req, res) => {
             data: data
         })
     })
-}
+};
 
-// Edit travel approval by id
+// Edit TallyJournalEntry by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    TravelApproval.updateById(requestBody, (err, data) => {
+    TallyJournalEntry.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing term."
+                message: sqlErrorMessage || "Some error occurred while editing TallyJournalEntry."
             })
         } else {
             res.status(200).send({
@@ -83,17 +84,17 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert travel approval
+// Insert TallyJournalEntry 
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    TravelApproval.insert(requestBody, (err, data) => {
+    TallyJournalEntry.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing term."
+                message: sqlErrorMessage || "Some error occurred while inserting TallyJournalEntry."
             })
         } else {
             res.status(200).send({

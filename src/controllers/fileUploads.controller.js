@@ -1,16 +1,16 @@
-const WorkflowType = require('../models/workflowType.model');
+const FileUploads = require('../models/fileUploads.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all workflow type
+// Responses for fetching all file uploads
 exports.findAll = (req, res) => {
 
-    WorkflowType.getAll((err, data) => {
+    FileUploads.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving workflow type."
+                message: sqlErrorMessage || "Some error occurred while retrieving FileUploads."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a workflow type by id
+// Responses for fetching a file uploads by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    WorkflowType.findById(id, (err, data) => {
+    FileUploads.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving workflow type."
+                message: sqlErrorMessage || "Some error occurred while retrieving FileUploads."
             });
         }
         else res.status(200).send({
@@ -42,17 +42,17 @@ exports.findById = (req, res) => {
     })
 };
 
-// Edit workflow type by id
+// Edit file uploads by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    WorkflowType.updateById(requestBody, (err, data) => {
+    FileUploads.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing workflow type."
+                message: sqlErrorMessage || "Some error occurred while editing FileUploads."
             })
         } else {
             res.status(200).send({
@@ -63,17 +63,17 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert workflow type
+// Insert file uploads
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    WorkflowType.insert(requestBody, (err, data) => {
+    FileUploads.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing workflow type."
+                message: sqlErrorMessage || "Some error occurred while editing FileUploads."
             })
         } else {
             res.status(200).send({
@@ -84,37 +84,59 @@ exports.insert = (req, res) => {
     })
 }
 
-// Result workflow types for travel/reimbursement
-exports.findReimbursementWorkflowTypes = (req, res) =>   {
-    const requestBody = req.body;
+// Responses for fetching all travel approval file uploads
+exports.findTravelApprovalFileUploads = (req, res) => {
+    const { ta_id } = req.params;
 
-    WorkflowType.getReimbursementWorkflowTypes(requestBody, (err, data) => {
+    FileUploads.getTravelApprovalFileUploads(ta_id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing workflow type."
-            })
+                message: sqlErrorMessage || "Some error occurred while retrieving FileUploads."
+            });
         } else {
             res.status(200).send({
                 success: true,
                 data: data
-            })
+            });
         }
     })
-}
+};
 
-// Result workflow types for tender
-exports.fidAllTenderWorkflowTypes = (req, res) => {
+// Responses for fetching all reimbursement file uploads
+exports.findReimbursementFileUploads = (req, res) => {
+    const { re_id } = req.params;
 
-    WorkflowType.getAllTenderWorkflowTypes((err, data) => {
+    FileUploads.getReimbursementFileUploads(re_id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving workflow type."
+                message: sqlErrorMessage || "Some error occurred while retrieving FileUploads."
+            });
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            });
+        }
+    })
+};
+
+// Responses for fetching all travel expenses file uploads
+exports.findTravelExpensesFileUploads = (req, res) => {
+    const { te_id } = req.params;
+
+    FileUploads.getTravelExpensesFileUploads(te_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while retrieving FileUploads."
             });
         } else {
             res.status(200).send({

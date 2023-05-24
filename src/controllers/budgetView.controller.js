@@ -1,16 +1,16 @@
-const TravelApproval = require('../models/travelApproval.model');
+const BudgetView = require('../models/budgetView.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all travel approval
+// Responses for fetching all budget view 
 exports.findAll = (req, res) => {
 
-    TravelApproval.getAll((err, data) => {
+    BudgetView.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving term."
+                message: sqlErrorMessage || "Some error occurred while retrieving budget view."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a travel approval by id
+// Responses for fetching a budget view by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    TravelApproval.findById(id, (err, data) => {
+    BudgetView.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving term."
+                message: sqlErrorMessage || "Some error occurred while retrieving budget type."
             });
         }
         else res.status(200).send({
@@ -42,37 +42,39 @@ exports.findById = (req, res) => {
     })
 };
 
-// Responses for fetching a travel approval approval ref no 
-exports.findAppovalRefNo = (req, res) => {
-    const { user_id } = req.params;
-  
-    TravelApproval.findAppovalRefNo(user_id, (err, data) => {
+// Responses for fetching budget transactions 
+exports.findBudgetTransaction = (req, res) => {
+
+    const requestBody = req.body; 
+
+    BudgetView.getBudgetTransaction(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving term."
+                message: sqlErrorMessage || "Some error occurred while retrieving budget view."
+            });
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
             });
         }
-        else res.status(200).send({
-            success: true,
-            data: data
-        })
     })
-}
+};
 
-// Edit travel approval by id
+// Edit budget view by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    TravelApproval.updateById(requestBody, (err, data) => {
+    BudgetView.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing term."
+                message: sqlErrorMessage || "Some error occurred while editing budget view."
             })
         } else {
             res.status(200).send({
@@ -83,17 +85,17 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert travel approval
+// Insert budget view 
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    TravelApproval.insert(requestBody, (err, data) => {
+    BudgetView.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing term."
+                message: sqlErrorMessage || "Some error occurred while inserting budget view."
             })
         } else {
             res.status(200).send({

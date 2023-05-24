@@ -49,7 +49,17 @@ require("./routes/budget.route.js")(app);
 require("./routes/budgetType.route.js")(app);
 require("./routes/budgetAdjust.route.js")(app);
 require("./routes/accountMst.route.js")(app);
-
+require("./routes/budgetView.route.js")(app);
+require("./routes/tenderHeader.route.js")(app);
+require("./routes/tenderSupplier.route.js")(app);
+require("./routes/workflowHistory.route.js")(app);
+require("./routes/fileUploads.route.js")(app);
+require("./routes/useraccess.route.js")(app);
+require("./routes/expenses.route.js")(app);
+require("./routes/departure.route.js")(app);
+require("./routes/tallyJournalEntry.route.js")(app);
+require("./routes/comment.route.js")(app);
+require("./routes/tenderTerms.route.js")(app);
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', `${process.env.HOST_URL}/${process.env.PORT}`);

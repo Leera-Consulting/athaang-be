@@ -1,7 +1,7 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_WORKFLOW_TYPE, WORKFLOW_TYPE } = require("../constants/tables");
+const { SMA_WORKFLOW_TYPE, WORKFLOW_TYPE, SMA_WORKFLOW } = require("../constants/tables");
 
 // Workflow Type constructor
 const WorkflowType = function(workflowType) {
@@ -59,7 +59,6 @@ WorkflowType.updateById = (requestBody, result) => {
 // Insert a workflowType into the database
 WorkflowType.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_WORKFLOW_TYPE, requestBody);
-    console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -70,5 +69,32 @@ WorkflowType.insert = (requestBody, result) => {
         result(null, res);
     });
 }
+
+// Result workflow types for travel/reimbursement
+WorkflowType.getReimbursementWorkflowTypes = (requestBody, result) =>   {
+    const query = `SELECT b.* FROM sma_workflow a, sma_workflow_type b where b.id = a.trans_Type and company_id = ${requestBody?.company_id} and b.status = 'Y' and a.doc_Type = 'RE'`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
+
+// Result all tender workflow types
+WorkflowType.getAllTenderWorkflowTypes = result =>   {
+    const query = `SELECT * FROM ${SMA_WORKFLOW_TYPE} WHERE doc_type = 'TN' AND status = 'Y';`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
 
 module.exports = WorkflowType;

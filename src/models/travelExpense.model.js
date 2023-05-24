@@ -69,4 +69,17 @@ TravelExpense.insert = (requestBody, result) => {
     });
 }
 
+// Result all reimbursements
+TravelExpense.getAllReimbursements = result =>   {
+    const query = `SELECT * from ${SMA_TRAVEL_EXPENSES} where exp_type = 'R'`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 module.exports = TravelExpense;
