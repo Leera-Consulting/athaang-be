@@ -1,7 +1,7 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { USERACCESS } = require("../constants/tables");
+const { USERACCESS, USER } = require("../constants/tables");
 
 // Useraccess constructor
 const Useraccess = function(useraccess) {
@@ -89,6 +89,21 @@ Useraccess.insert = (requestBody, result) => {
 // Get user access of a user role
 Useraccess.getUseraccessOfUserRole = (user_role, result) => {
     const query = `SELECT * FROM ${USERACCESS} WHERE user_role = ${user_role};`;
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+Useraccess.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(USERACCESS, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

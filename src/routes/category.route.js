@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create category
     router.post("/create", category.insert);
+    
+    // Delete
+router.delete("/delete", category.delete);
   
     app.use('/api/category', router);
 };

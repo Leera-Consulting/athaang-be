@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_TRAVAL_APPROVAL, TRAVEL_APPROVAL, SMA_TRAVEL_EXPENSES } = require("../constants/tables");
@@ -76,6 +76,21 @@ TravelApproval.updateById = (requestBody, result) => {
 // Insert a travel approvals into the database
 TravelApproval.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_TRAVAL_APPROVAL, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+TravelApproval.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_TRAVAL_APPROVAL, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

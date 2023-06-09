@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMTP_DETAIL, SMTP_DTL } = require("../constants/tables");
@@ -59,6 +59,21 @@ SmtpDetail.updateById = (requestBody, result) => {
 // Insert a SMTP detail into the database
 SmtpDetail.insert = (requestBody, result) => {
     const query = postByIdQuery(SMTP_DTL, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+SmtpDetail.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMTP_DTL, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

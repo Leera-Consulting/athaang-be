@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { WORKFLOW_HISTORY } = require("../constants/tables");
@@ -107,5 +107,20 @@ WorkflowHistory.getReimbursementWorkhistory = (re_id, result) =>   {
         result(null, res);
     });
 };
+
+// Delete
+WorkflowHistory.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(WORKFLOW_HISTORY, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
 
 module.exports = WorkflowHistory;

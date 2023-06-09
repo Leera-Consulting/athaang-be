@@ -15,6 +15,9 @@ module.exports = app => {
 
     // Retreive all reimbursements
     router.get("/reimbursement", travelExpense.getAllReimbursements)
+
+    // Delete
+router.delete("/delete", travelExpense.delete);
   
     app.use('/api/travelExpense', router);
 };

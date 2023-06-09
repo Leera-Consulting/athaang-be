@@ -13,6 +13,9 @@ module.exports = app => {
 
     // Create travel approval
     router.post("/create", travelApproval.insert);
+
+    // Delete
+router.delete("/delete", travelApproval.delete);
   
     app.use('/api/travelApproval', router);
 };

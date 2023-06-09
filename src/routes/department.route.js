@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create department
     router.post("/create", department.insert);
+
+    // Delete
+router.post("/delete", department.delete);
   
     app.use('/api/department', router);
 };

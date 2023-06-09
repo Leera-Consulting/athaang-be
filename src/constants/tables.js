@@ -83,6 +83,14 @@ const COMMENT = "COMMENT";
 const SMA_TENDER_SUPPLIER_QUOTE = "sma_tender_supplier_quote";
 const SMA_TENDER_TERMS = "sma_tender_terms";
 const TENDER_TERMS = "TENDER_TERMS";
+const SMA_TENDER_ITEMS = "sma_tender_items";
+const TENDER_ITEMS = "TENDER_ITEMS"
+const SMA_TENDER_FILEUPLOAD = "sma_tender_file_upload"
+const TENDER_FILEUPLOAD = "TENDER_FILEUPLOAD"
+const SMA_PURCHASE_REQ = "sma_purchase_req"
+const PURCHASE_REQ = "PURCHASE_REQ"
+const SMA_GOODS_ISSUE_NOTE = "sma_goods_issue_note"
+const GOODS_ISSUE_NOTE = "GOODS_ISSUE_NOTE"
 
 module.exports = {
     SMA_USER,
@@ -169,5 +177,13 @@ module.exports = {
     COMMENT,
     SMA_TENDER_SUPPLIER_QUOTE,
     SMA_TENDER_TERMS,
-    TENDER_TERMS
+    TENDER_TERMS,
+    SMA_TENDER_ITEMS,
+    TENDER_ITEMS,
+    SMA_TENDER_FILEUPLOAD,
+    TENDER_FILEUPLOAD,
+    SMA_PURCHASE_REQ,
+    PURCHASE_REQ,
+    SMA_GOODS_ISSUE_NOTE,
+    GOODS_ISSUE_NOTE
 }

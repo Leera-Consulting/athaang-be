@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create gstMaster
     router.post("/create", gstMaster.insert);
+
+    // Delete
+router.delete("/delete", gstMaster.delete);
   
     app.use('/api/gstMaster', router);
 };

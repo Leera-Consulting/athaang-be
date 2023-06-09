@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { CITIES } = require("../constants/tables");
@@ -60,6 +60,21 @@ Cities.updateById = (requestBody, result) => {
 // Insert a Cities into the database
 Cities.insert = (requestBody, result) => {
     const query = postByIdQuery(CITIES, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+Cities.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(CITIES, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create account group
     router.post("/create", accountGroup.insert);
+
+    // Delete
+    router.delete("/delete", accountGroup.delete);
   
     app.use('/api/accountGroup', router);
 };

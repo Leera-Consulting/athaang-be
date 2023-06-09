@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_UNITS, UNITS } = require('../constants/tables');
@@ -57,6 +57,21 @@ Units.updateById = (requestBody, result) => {
 // Insert a units into the database
 Units.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_UNITS, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+Units.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_UNITS, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

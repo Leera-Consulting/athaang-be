@@ -22,5 +22,8 @@ module.exports = app => {
     // Retrieve travel approval file uploads
     router.get("/te/:te_id", fileUploads.findTravelExpensesFileUploads)
 
+    // Delete
+router.delete("/delete", fileUploads.delete);
+
     app.use('/api/fileUploads', router);
 };

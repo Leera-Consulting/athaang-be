@@ -6,12 +6,16 @@ module.exports = app => {
     // Retrieve tender terms
     router.get("/", tenderTerms.findAll);
     router.get("/:id", tenderTerms.findById);
+    router.get("/terms-of-tender/:tender_id", tenderTerms.findTermsOfTenderHeader)
 
     // Edit tender terms
     router.put("/edit", tenderTerms.updateById);
 
     // Create tender term
     router.post("/create", tenderTerms.insert);
+
+    // Delete
+router.delete("/delete", tenderTerms.delete);
   
     app.use('/api/tenderTerms', router);
 };

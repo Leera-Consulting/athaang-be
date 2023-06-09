@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { BUDGET_VIEW, SMA_BUDGET } = require('../constants/tables');
@@ -70,6 +70,21 @@ BudgetView.updateById = (requestBody, result) => {
 // Insert a BUDGET_VIEW into the database
 BudgetView.insert = (requestBody, result) => {
     const query = postByIdQuery(BUDGET_VIEW, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+BudgetView.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(BUDGET_VIEW, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

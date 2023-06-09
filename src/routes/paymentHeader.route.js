@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create payment header
     router.post("/create", paymentHeader.insert);
+
+    // Delete
+router.delete("/delete", paymentHeader.delete);
   
     app.use('/api/paymentHeader', router);
 };

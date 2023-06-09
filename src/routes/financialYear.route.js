@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create financial year
     router.post("/create", financialYear.insert);
+
+    // Delete
+router.delete("/delete", financialYear.delete);
   
     app.use('/api/financialYear', router);
 };

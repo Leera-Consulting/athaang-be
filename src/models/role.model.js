@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_ROLE, ROLE } = require('../constants/tables');
@@ -58,6 +58,21 @@ Role.updateById = (requestBody, result) => {
 // Insert a role into the database
 Role.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_ROLE, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+Role.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_ROLE, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

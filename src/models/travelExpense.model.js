@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_TRAVEL_EXPENSES, TRAVEL_EXPENSES } = require("../constants/tables");
@@ -81,5 +81,20 @@ TravelExpense.getAllReimbursements = result =>   {
         result(null, res);
     });
 };
+
+// Delete
+TravelExpense.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_TRAVEL_EXPENSES, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
 
 module.exports = TravelExpense;

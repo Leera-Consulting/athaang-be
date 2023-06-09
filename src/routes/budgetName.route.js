@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create budget names
     router.post("/create", budgetName.insert);
+
+    // Delete
+router.delete("/delete", budgetName.delete);
   
     app.use('/api/budgetName', router);
 };

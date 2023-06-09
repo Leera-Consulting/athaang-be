@@ -13,6 +13,9 @@ module.exports = app => {
 
     // Create tallyJournalEntry
     router.post("/create", tallyJournalEntry.insert);
+
+    // Delete
+router.delete("/delete", tallyJournalEntry.delete);
   
     app.use('/api/tallyJournalEntry', router);
 };

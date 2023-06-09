@@ -13,5 +13,8 @@ module.exports = app => {
     // Create main menu
     router.post("/create", user.insert);
 
+    // Delete
+router.delete("/delete", user.delete);
+
     app.use('/api/user', router);
 };

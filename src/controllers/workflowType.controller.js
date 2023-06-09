@@ -124,3 +124,44 @@ exports.fidAllTenderWorkflowTypes = (req, res) => {
         }
     })
 };
+
+// Result workflow types for purchase request
+exports.findPurchaseRequestWorkflowTypes = (req, res) => {
+
+    WorkflowType.getPurchaseRequestWorkflowTypes((err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while retrieving workflow type."
+            });
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            });
+        }
+    })
+};
+
+// Delete 
+exports.delete = (req, res) => {
+    const requestBody = req.body;
+
+    WorkflowType.delete(requestBody, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while deleting."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}

@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_PARTY_MST, PARTY_MST } = require("../constants/tables")
@@ -57,6 +57,21 @@ PartyMst.updateById = (requestBody, result) => {
 // Insert a Party Mst into the database
 PartyMst.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_PARTY_MST, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+PartyMst.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_PARTY_MST, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

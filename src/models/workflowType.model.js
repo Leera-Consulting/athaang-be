@@ -1,7 +1,7 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_WORKFLOW_TYPE, WORKFLOW_TYPE, SMA_WORKFLOW } = require("../constants/tables");
+const { SMA_WORKFLOW_TYPE, WORKFLOW_TYPE } = require("../constants/tables");
 
 // Workflow Type constructor
 const WorkflowType = function(workflowType) {
@@ -96,5 +96,33 @@ WorkflowType.getAllTenderWorkflowTypes = result =>   {
         result(null, res);
     });
 };
+
+// Result all purchase request workflow types
+WorkflowType.getPurchaseRequestWorkflowTypes = result =>   {
+    const query = `SELECT * FROM ${SMA_WORKFLOW_TYPE} WHERE doc_type = 'PR';`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
+// Delete
+WorkflowType.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_WORKFLOW_TYPE, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
 
 module.exports = WorkflowType;

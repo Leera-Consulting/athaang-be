@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create type
     router.post("/create", type.insert);
+
+    // Delete
+router.delete("/delete", type.delete);
   
     app.use('/api/type', router);
 };

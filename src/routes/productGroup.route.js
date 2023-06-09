@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create productGroup
     router.post("/create", productGroup.insert);
+
+    // Delete
+router.delete("/delete", productGroup.delete);
   
     app.use('/api/productGroup', router);
 };

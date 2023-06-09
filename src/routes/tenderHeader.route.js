@@ -18,6 +18,9 @@ module.exports = app => {
 
     // Get quote party of tender supplier
     router.get("/quoteSupplierParty", tenderHeader.quoteSupplierParty)
+
+    // Delete
+router.delete("/delete", tenderHeader.delete);
   
     app.use('/api/tenderHeader', router);
 };

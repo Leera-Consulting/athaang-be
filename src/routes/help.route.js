@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create help
     router.post("/create", help.insert);
+
+    // Delete
+router.delete("/delete", help.delete);
   
     app.use('/api/help', router);
 };

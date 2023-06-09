@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create states
     router.post("/create", states.insert);
+
+    // Delete
+router.delete("/delete", states.delete);
   
     app.use('/api/states', router);
 };

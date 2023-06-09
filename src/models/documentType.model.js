@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_DOCUMENT_TYPE, DOCUMENT_TYPE } = require("../constants/tables");
@@ -59,6 +59,21 @@ DocumentType.updateById = (requestBody, result) => {
 // Insert a document type into the database
 DocumentType.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_DOCUMENT_TYPE, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+DocumentType.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_DOCUMENT_TYPE, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

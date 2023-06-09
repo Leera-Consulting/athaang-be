@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create main menu
     router.post("/create", documentType.insert);
+
+    // Delete
+router.delete("/delete", documentType.delete);
   
     app.use('/api/document-type', router);
 };

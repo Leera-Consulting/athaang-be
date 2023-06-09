@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create budget adjust
     router.post("/create", budgetAdjust.insert);
+
+    // Delete
+router.delete("/delete", budgetAdjust.delete);
   
     app.use('/api/budgetAdjust', router);
 };

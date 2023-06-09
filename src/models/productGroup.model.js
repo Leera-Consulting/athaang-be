@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_PRODUCT_GROUP, PRODUCT_GROUP } = require('../constants/tables');
@@ -60,6 +60,21 @@ ProductGroup.updateById = (requestBody, result) => {
 // Insert a product group into the database
 ProductGroup.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_PRODUCT_GROUP, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+ProductGroup.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_PRODUCT_GROUP, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

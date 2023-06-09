@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create party-mst
     router.post("/create", partyMst.insert);
+
+    // Delete
+router.delete("/delete", partyMst.delete);
   
     app.use('/api/partyMst', router);
 };

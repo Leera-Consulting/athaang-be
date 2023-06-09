@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create pettycash
     router.post("/create", pettycash.insert);
+
+    // Delete
+router.delete("/delete", pettycash.delete);
   
     app.use('/api/pettycash', router);
 };

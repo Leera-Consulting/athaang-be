@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { PAYMENT_HEADER } = require("../constants/tables")
@@ -57,6 +57,21 @@ PaymentHeader.updateById = (requestBody, result) => {
 // Insert a payment header into the database
 PaymentHeader.insert = (requestBody, result) => {
     const query = postByIdQuery(PAYMENT_HEADER, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+PaymentHeader.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(PAYMENT_HEADER, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

@@ -14,5 +14,8 @@ module.exports = app => {
     // Create expense
     router.post("/create", expenses.insert);
 
+    // Delete
+router.delete("/delete", expenses.delete);
+
     app.use('/api/expenses', router);
 };

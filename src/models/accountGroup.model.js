@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_ACCOUNT_GROUP, ACCOUNT_GROUP } = require('../constants/tables');
@@ -57,6 +57,21 @@ AccountGroup.updateById = (requestBody, result) => {
 // Insert a AccountGroup into the database
 AccountGroup.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_ACCOUNT_GROUP, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+AccountGroup.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_ACCOUNT_GROUP, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

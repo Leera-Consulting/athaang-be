@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create approval memo
     router.post("/create", approvalMemo.insert);
+
+    // Delete
+    router.delete("/delete", approvalMemo.delete);
   
     app.use('/api/approvalMemo', router);
 };

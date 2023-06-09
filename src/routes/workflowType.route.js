@@ -19,5 +19,11 @@ module.exports = app => {
     // Retreive workflow type for tender
     router.get("/tender", workflowType.fidAllTenderWorkflowTypes);
 
+    // Retreive workflow type for purchase request
+    router.get("/purchase-request", workflowType.findPurchaseRequestWorkflowTypes);
+
+    // Delete
+router.delete("/delete", workflowType.delete);
+
     app.use('/api/workflowType', router);
 };

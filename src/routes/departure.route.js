@@ -13,6 +13,9 @@ module.exports = app => {
 
     // Create departure
     router.post("/create", departure.insert);
+
+    // Delete
+router.delete("/delete", departure.delete);
   
     app.use('/api/departure', router);
 };

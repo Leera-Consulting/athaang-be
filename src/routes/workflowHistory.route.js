@@ -22,5 +22,8 @@ module.exports = app => {
     // Retrieve workflow history for Reimbursement
     router.get("/reimbursement/:re_id", workflowHistory.findReimbursementWorkhistory);
 
+    // Delete
+router.delete("/delete", workflowHistory.delete);
+
     app.use('/api/workflowHistory', router);
 };

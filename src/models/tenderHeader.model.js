@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_TENDER_HEADER, TENDER_HEADER, SMA_TENDER_SUPPLIER, SMA_PARTY_MST, SMA_TENDER_SUPPLIER_QUOTE } = require('../constants/tables');
@@ -88,6 +88,21 @@ TenderHeader.tenderSupplierParty = result => {
 // Get parties of a tender supplier
 TenderHeader.quoteSupplierParty = result => {
     const query = `select * from ${SMA_PARTY_MST} a INNER JOIN ${SMA_TENDER_SUPPLIER_QUOTE} b WHERE a.id = b.supplier_id AND b.rate > 0;`;
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+TenderHeader.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_TENDER_HEADER, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

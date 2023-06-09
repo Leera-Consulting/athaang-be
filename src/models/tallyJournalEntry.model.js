@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { TALLY_JOURNAL_ENTRY } = require('../constants/tables');
@@ -70,6 +70,21 @@ TallyJournalEntry.updateById = (requestBody, result) => {
 // Insert a TALLY_JOURNAL_ENTRY into the database
 TallyJournalEntry.insert = (requestBody, result) => {
     const query = postByIdQuery(TALLY_JOURNAL_ENTRY, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+TallyJournalEntry.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(TALLY_JOURNAL_ENTRY, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

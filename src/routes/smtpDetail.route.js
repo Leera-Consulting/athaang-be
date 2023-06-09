@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create smtpDetail
     router.post("/create", smtpDetail.insert);
+
+    // Delete
+router.delete("/delete", smtpDetail.delete);
   
     app.use('/api/smtpDetail', router);
 };

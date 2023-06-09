@@ -13,6 +13,9 @@ module.exports = app => {
 
     // Create comment
     router.post("/create", comment.insert);
+
+    // Delete
+router.delete("/delete", comment.delete);
   
     app.use('/api/comment', router);
 };

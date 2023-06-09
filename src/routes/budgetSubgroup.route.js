@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create budget subgroups
     router.post("/create", budgetSubgroup.insert);
+
+    // Delete
+router.delete("/delete", budgetSubgroup.delete);
   
     app.use('/api/budgetSubgroup', router);
 };

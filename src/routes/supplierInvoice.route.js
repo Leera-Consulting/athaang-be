@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create supplier invoice
     router.post("/create", supplierInvoice.insert);
+
+    // Delete
+router.delete("/delete", supplierInvoice.delete);
   
     app.use('/api/supplierInvoice', router);
 };

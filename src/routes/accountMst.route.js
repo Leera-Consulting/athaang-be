@@ -13,6 +13,9 @@ module.exports = app => {
 
     // Create account master
     router.post("/create", accountMst.insert);
+
+    // Delete
+    router.delete("/delete", accountMst.delete);
   
     app.use('/api/accountMst', router);
 };

@@ -19,5 +19,8 @@ module.exports = app => {
     // Retrieve useraccess of a user role
     router.get("/user-role/:user_role", useraccess.findUseraccessOfUserRole);
 
+    // Delete
+router.delete("/delete", useraccess.delete);
+
     app.use('/api/useraccess', router);
 };

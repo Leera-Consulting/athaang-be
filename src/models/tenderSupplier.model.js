@@ -1,7 +1,7 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_TENDER_SUPPLIER, TENDER_SUPPLIER } = require('../constants/tables');
+const { SMA_TENDER_SUPPLIER, TENDER_SUPPLIER, SMA_PARTY_MST } = require('../constants/tables');
 
 // Tender Supplier constructor
 const TenderSupplier = function(tenderSupplier) {
@@ -11,6 +11,19 @@ const TenderSupplier = function(tenderSupplier) {
 // Result all SMA_TENDER_SUPPLIER from the database
 TenderSupplier.getAll = result =>   {
     const query = getQuery(SMA_TENDER_SUPPLIER);
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
+// Result all tender suppliers of a tender header from the database
+TenderSupplier.getSuppliersOfTenderHeader = (tender_id, result) =>   {
+    const query = `SELECT a.*, b.party_name from ${SMA_TENDER_SUPPLIER} a, ${SMA_PARTY_MST} b where b.id = a.supplier_id and tender_hdr_id = ${tender_id};`;
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -57,6 +70,21 @@ TenderSupplier.updateById = (requestBody, result) => {
 // Insert a SMA_TENDER_SUPPLIER into the database
 TenderSupplier.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_TENDER_SUPPLIER, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+TenderSupplier.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_TENDER_SUPPLIER, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

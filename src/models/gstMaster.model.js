@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { GST_MST } = require('../constants/tables');
@@ -57,6 +57,21 @@ GSTMaster.updateById = (requestBody, result) => {
 // Insert a GSTMaster into the database
 GSTMaster.insert = (requestBody, result) => {
     const query = postByIdQuery(GST_MST, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+GSTMaster.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(GST_MST, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create purchase order
     router.post("/create", purchaseOrder.insert);
+
+    // Delete
+router.delete("/delete", purchaseOrder.delete);
   
     app.use('/api/purchaseOrder', router);
 };

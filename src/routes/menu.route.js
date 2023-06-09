@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Create main menu
     router.post("/create", menu.insert);
+
+    // Delete
+router.delete("/delete", menu.delete);
   
     app.use('/api/menu', router);
 };

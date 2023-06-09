@@ -60,6 +60,10 @@ require("./routes/departure.route.js")(app);
 require("./routes/tallyJournalEntry.route.js")(app);
 require("./routes/comment.route.js")(app);
 require("./routes/tenderTerms.route.js")(app);
+require("./routes/tenderItems.route.js")(app);
+require("./routes/tenderFileUpload.route.js")(app);
+require("./routes/purchaseReq.route.js")(app);
+require("./routes/goodsIssueNote.route.js")(app);
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', `${process.env.HOST_URL}/${process.env.PORT}`);

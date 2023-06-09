@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_APPROVAL_MEMO, APPROVAL_MEMO } = require('../constants/tables');
@@ -57,6 +57,21 @@ ApprovalMemo.updateById = (requestBody, result) => {
 // Insert a SMA_APPROVAL_MEMO into the database
 ApprovalMemo.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_APPROVAL_MEMO, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+ApprovalMemo.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_APPROVAL_MEMO, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

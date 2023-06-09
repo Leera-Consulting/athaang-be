@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { SMA_HELP, HELP } = require("../constants/tables");
@@ -61,6 +61,21 @@ Help.updateById = (requestBody, result) => {
 // Insert a sma_help into the database
 Help.insert = (requestBody, result) => {
     const query = postByIdQuery(SMA_HELP, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+Help.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_HELP, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

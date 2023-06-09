@@ -43,9 +43,16 @@ function postByIdQuery(table, requestBody) {
     return `INSERT INTO ${table} (${columns}) VALUES (${values})`;
 }
 
+// Returns the query to delete a row in a table
+function deleteByIdQuery(table, requestBody) {
+
+    return `DELETE FROM ${table} WHERE ${Object.keys(requestBody)[0]}=${requestBody[Object.keys(requestBody)[0]]};`
+}
+
 module.exports = {
     getQuery,
     getByIdQuery,
     putByIdQuery,
-    postByIdQuery
+    postByIdQuery,
+    deleteByIdQuery
 }

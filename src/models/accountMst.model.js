@@ -1,4 +1,4 @@
-const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery } = require('../utils/db');
+const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
 const { ACCOUNT_MST } = require('../constants/tables');
@@ -71,6 +71,21 @@ AccountMst.updateById = (requestBody, result) => {
 // Insert a ACCOUNT_MST into the database
 AccountMst.insert = (requestBody, result) => {
     const query = postByIdQuery(ACCOUNT_MST, requestBody);
+    console.log(query)
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        result(null, res);
+    });
+}
+
+// Delete
+AccountMst.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(ACCOUNT_MST, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

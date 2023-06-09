@@ -146,3 +146,24 @@ exports.findTravelExpensesFileUploads = (req, res) => {
         }
     })
 };
+
+// Delete 
+exports.delete = (req, res) => {
+    const requestBody = req.body;
+
+    FileUploads.delete(requestBody, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while deleting."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
