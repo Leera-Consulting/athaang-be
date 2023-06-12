@@ -65,6 +65,8 @@ require("./routes/tenderFileUpload.route.js")(app);
 require("./routes/purchaseReq.route.js")(app);
 require("./routes/goodsIssueNote.route.js")(app);
 require("./routes/supplierInvoiceDetails.route.js")(app);
+require("./routes/approvalDetails.route.js")(app);
+require("./routes/approvalItems.route.js")(app);
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', `${process.env.HOST_URL}/${process.env.PORT}`);
