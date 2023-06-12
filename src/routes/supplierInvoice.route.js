@@ -5,7 +5,9 @@ module.exports = app => {
   
     // Retrieve supplier invoice(s)
     router.get("/", supplierInvoice.findAll);
-    router.get("/:id", supplierInvoice.findById);
+    router.get("/fetch/:id", supplierInvoice.findById);
+
+    router.get("/filter", supplierInvoice.filter);
 
     // Edit supplier invoice
     router.put("/edit", supplierInvoice.updateById);

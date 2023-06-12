@@ -1,10 +1,10 @@
-const SupplierInvoice = require('../models/supplierInvoice.model');
+const SupplierInvoiceDetails = require('../models/supplierInvoiceDetails.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all supplier invoice 
+// Responses for fetching all SupplierInvoiceDetails 
 exports.findAll = (req, res) => {
 
-    SupplierInvoice.getAll((err, data) => {
+    SupplierInvoiceDetails.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
@@ -21,12 +21,12 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a supplier invoice by id
+// Responses for fetching a SupplierInvoiceDetails by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    SupplierInvoice.findById(id, (err, data) => {
+    SupplierInvoiceDetails.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
@@ -42,32 +42,11 @@ exports.findById = (req, res) => {
     })
 };
 
-// filter
-exports.filter = (req, res) => {
-
-    const params = req.query;
-  
-    SupplierInvoice.filter(params, (err, data) => {
-        if (err)    {
-            const sqlErrorMessage = handleSqlErrorMessage(err);
-
-            res.status(500).send({
-                success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving AccountGroup."
-            });
-        }
-        else res.status(200).send({
-            success: true,
-            data: data
-        })
-    })
-};
-
-// Edit supplier invoice by id
+// Edit SupplierInvoiceDetails by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    SupplierInvoice.updateById(requestBody, (err, data) => {
+    SupplierInvoiceDetails.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
@@ -84,11 +63,11 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert supplier invoice 
+// Insert SupplierInvoiceDetails 
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    SupplierInvoice.insert(requestBody, (err, data) => {
+    SupplierInvoiceDetails.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
@@ -109,7 +88,7 @@ exports.insert = (req, res) => {
 exports.delete = (req, res) => {
     const requestBody = req.body;
 
-    SupplierInvoice.delete(requestBody, (err, data) => {
+    SupplierInvoiceDetails.delete(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 

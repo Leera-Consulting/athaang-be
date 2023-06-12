@@ -53,6 +53,19 @@ TallyJournalEntry.findForTravelExpense = (te_id, result) =>   {
     });
 };
 
+// Result all TALLY_JOURNAL_ENTRY from the database
+TallyJournalEntry.findForSupplierInvoice = (si_id, result) =>   {
+    const query = `SELECT * FROM ${TALLY_JOURNAL_ENTRY} WHERE doc_no = ${si_id} AND doc_type = 'SI' ORDER BY record_id`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Update a TALLY_JOURNAL_ENTRY filtered from id from the database
 TallyJournalEntry.updateById = (requestBody, result) => {
     const query = putByIdQuery(TALLY_JOURNAL_ENTRY, requestBody);

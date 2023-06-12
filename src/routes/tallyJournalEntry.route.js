@@ -7,6 +7,7 @@ module.exports = app => {
     router.get("/", tallyJournalEntry.findAll);
     router.get("/:id", tallyJournalEntry.findById);
     router.get("/travel-expense/:te_id", tallyJournalEntry.findForTravelExpense)
+    router.get("/supplier-invoice/:si_id", tallyJournalEntry.findForSupplierInvoice)
 
     // Edit tallyJournalEntry
     router.put("/edit", tallyJournalEntry.updateById);

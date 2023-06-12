@@ -40,6 +40,42 @@ SupplierInvoice.findById = (id, result) => {
     });
 };
 
+// filter
+SupplierInvoice.filter = (params, result) => {
+    let filterString = "";
+
+    if (params.status)  {
+        filterString += `status = ${params.status} AND `
+    }
+    if (params.suplier_name)  {
+        filterString += `suplier_name = ${params.suplier_name} AND `
+    }
+    if (params.decision)  {
+        filterString += `approval_status = ${params.decision} AND `
+    }
+
+    if (filterString != "") {
+        filterString = filterString.slice(0, -5)
+    }
+
+    const query = `SELECT * FROM ${SMA_SUPPLIER_INVOICE} WHERE ${filterString}`;
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        if (res.length) {
+            result(null, res);
+            return;
+        } else {
+            result(null, []);
+        }
+
+    });
+};
+
 // Update a SMA_SUPPLIER_INVOICE filtered from id from the database
 SupplierInvoice.updateById = (requestBody, result) => {
     const query = putByIdQuery(SMA_SUPPLIER_INVOICE, requestBody);

@@ -63,6 +63,27 @@ exports.findForTravelExpense = (req, res) => {
     })
 };
 
+// Responses for fetching TallyJournalEntry for supplier invoice
+exports.findForSupplierInvoice = (req, res) => {
+
+    const { si_id } = req.params;
+  
+    TallyJournalEntry.findForSupplierInvoice(si_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while retrieving TallyJournalEntry."
+            });
+        }
+        else res.status(200).send({
+            success: true,
+            data: data
+        })
+    })
+};
+
 // Edit TallyJournalEntry by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;

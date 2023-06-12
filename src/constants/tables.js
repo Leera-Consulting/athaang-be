@@ -91,6 +91,8 @@ const SMA_PURCHASE_REQ = "sma_purchase_req"
 const PURCHASE_REQ = "PURCHASE_REQ"
 const SMA_GOODS_ISSUE_NOTE = "sma_goods_issue_note"
 const GOODS_ISSUE_NOTE = "GOODS_ISSUE_NOTE"
+const SMA_SUPPLIER_INVOICE_DETAILS = "sma_supplier_invoice_details"
+const SUPPLIER_INVOICE_DETAILS = "SUPPLIER_INVOICE_DETAILS"
 
 module.exports = {
     SMA_USER,
@@ -185,5 +187,7 @@ module.exports = {
     SMA_PURCHASE_REQ,
     PURCHASE_REQ,
     SMA_GOODS_ISSUE_NOTE,
-    GOODS_ISSUE_NOTE
+    GOODS_ISSUE_NOTE,
+    SMA_SUPPLIER_INVOICE_DETAILS,
+    SUPPLIER_INVOICE_DETAILS
 }
