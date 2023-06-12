@@ -95,6 +95,19 @@ FileUploads.getReimbursementFileUploads = (re_id, result) =>   {
     });
 };
 
+// Result all supplier invoice file uploads from the database
+FileUploads.getSupplierInvoiceFileUploads = (si_id, result) =>   {
+    const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'SI' AND reference_id = ${si_id};`
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Result all travel expenses file uploads from the database
 FileUploads.getTravelExpensesFileUploads = (te_id, result) =>   {
     const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'TE' AND reference_id = ${te_id};`

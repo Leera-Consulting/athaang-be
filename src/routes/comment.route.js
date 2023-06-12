@@ -7,6 +7,7 @@ module.exports = app => {
     router.get("/", comment.findAll);
     router.get("/:id", comment.findById);
     router.get("/travel-expense/:te_id", comment.findCommentsForTravelExpense)
+    router.get("/supplier-invoice/:si_id", comment.findCommentsForSupplierInvoice)
 
     // Edit comment
     router.put("/edit", comment.updateById);

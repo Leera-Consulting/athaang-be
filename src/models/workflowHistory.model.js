@@ -108,6 +108,19 @@ WorkflowHistory.getReimbursementWorkhistory = (re_id, result) =>   {
     });
 };
 
+// Result workflow history for supplier invoice
+WorkflowHistory.getSupplierInvoiceWorkflowTypes = (si_id, result) =>   {
+    const query = `SELECT * from workflow_history where doc_id = ${si_id} and doc_type = 'SI' order by id desc`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Delete
 WorkflowHistory.delete = (requestBody, result) => {
     const query = deleteByIdQuery(WORKFLOW_HISTORY, requestBody);

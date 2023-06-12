@@ -22,6 +22,9 @@ module.exports = app => {
     // Retrieve workflow history for Reimbursement
     router.get("/reimbursement/:re_id", workflowHistory.findReimbursementWorkhistory);
 
+    // Retrieve workflow history for supplier invoice
+    router.get("/supplier-invoice/:si_id", workflowHistory.findSupplierInvoiceWorkflowTypes);
+
     // Delete
 router.delete("/delete", workflowHistory.delete);
 

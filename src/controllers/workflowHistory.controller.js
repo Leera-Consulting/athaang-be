@@ -147,6 +147,27 @@ exports.findReimbursementWorkhistory = (req, res) =>   {
     })
 }
 
+// Result workflow history for supplier invoice
+exports.findSupplierInvoiceWorkflowTypes = (req, res) =>   {
+    const { si_id } = req.params;
+
+    WorkflowHistory.getSupplierInvoiceWorkflowTypes(si_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while editing workflow type."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
 // Delete 
 exports.delete = (req, res) => {
     const requestBody = req.body;

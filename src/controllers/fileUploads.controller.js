@@ -126,6 +126,27 @@ exports.findReimbursementFileUploads = (req, res) => {
     })
 };
 
+// Responses for fetching all supplier invoice file uploads
+exports.findSupplierInvoiceFileUploads = (req, res) => {
+    const { si_id } = req.params;
+
+    FileUploads.getSupplierInvoiceFileUploads(si_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while retrieving FileUploads."
+            });
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            });
+        }
+    })
+};
+
 // Responses for fetching all travel expenses file uploads
 exports.findTravelExpensesFileUploads = (req, res) => {
     const { te_id } = req.params;

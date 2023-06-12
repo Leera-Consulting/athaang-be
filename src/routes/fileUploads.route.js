@@ -19,6 +19,9 @@ module.exports = app => {
     // Retrieve reimbursement file uploads
     router.get("/re/:re_id", fileUploads.findReimbursementFileUploads)
 
+    // Retrieve supplier invoice file uploads
+    router.get("/si/:si_id", fileUploads.findSupplierInvoiceFileUploads)
+
     // Retrieve travel approval file uploads
     router.get("/te/:te_id", fileUploads.findTravelExpensesFileUploads)
 

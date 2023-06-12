@@ -83,7 +83,6 @@ WorkflowType.getReimbursementWorkflowTypes = (requestBody, result) =>   {
     });
 };
 
-
 // Result all tender workflow types
 WorkflowType.getAllTenderWorkflowTypes = result =>   {
     const query = `SELECT * FROM ${SMA_WORKFLOW_TYPE} WHERE doc_type = 'TN' AND status = 'Y';`;
