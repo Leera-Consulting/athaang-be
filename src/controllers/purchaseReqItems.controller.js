@@ -1,16 +1,16 @@
-const ApprovalMemo = require('../models/approvalMemo.model');
+const PurchaseReqItems = require('../models/purchaseReqItems.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all approval memos 
+// Responses for fetching all purchase reqs items
 exports.findAll = (req, res) => {
 
-    ApprovalMemo.getAll((err, data) => {
+    PurchaseReqItems.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving AccountGroup."
+                message: sqlErrorMessage || "Some error occurred while retrieving purchase reqs."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a ApprovalMemo by id
+// Responses for fetching a purchase req item by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    ApprovalMemo.findById(id, (err, data) => {
+    PurchaseReqItems.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving AccountGroup."
+                message: sqlErrorMessage || "Some error occurred while retrieving purchase reqs."
             });
         }
         else res.status(200).send({
@@ -42,18 +42,18 @@ exports.findById = (req, res) => {
     })
 };
 
-// filter
-exports.filter = (req, res) => {
+// Responses for fetching a purchase req item by purchase req
+exports.findByPurchaseReq = (req, res) => {
 
-    const params = req.query;
+    const { id } = req.params;
   
-    ApprovalMemo.filter(params, (err, data) => {
+    PurchaseReqItems.findByPurchaseReq(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving AccountGroup."
+                message: sqlErrorMessage || "Some error occurred while retrieving purchase reqs."
             });
         }
         else res.status(200).send({
@@ -63,17 +63,17 @@ exports.filter = (req, res) => {
     })
 };
 
-// Edit ApprovalMemo by id
+// Edit purchase req item by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    ApprovalMemo.updateById(requestBody, (err, data) => {
+    PurchaseReqItems.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing AccountGroup."
+                message: sqlErrorMessage || "Some error occurred while editing purchase reqs."
             })
         } else {
             res.status(200).send({
@@ -84,17 +84,17 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert ApprovalMemo 
+// Insert purchase req item by id
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    ApprovalMemo.insert(requestBody, (err, data) => {
+    PurchaseReqItems.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while inserting AccountGroup."
+                message: sqlErrorMessage || "Some error occurred while editing purchase reqs."
             })
         } else {
             res.status(200).send({
@@ -109,7 +109,7 @@ exports.insert = (req, res) => {
 exports.delete = (req, res) => {
     const requestBody = req.body;
 
-    ApprovalMemo.delete(requestBody, (err, data) => {
+    PurchaseReqItems.delete(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 

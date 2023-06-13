@@ -1,16 +1,16 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_APPROVAL_MEMO, APPROVAL_MEMO } = require('../constants/tables');
+const { SMA_PURCHASE_REQ_ITEMS, PURCHASE_REQ_ITEMS } = require('../constants/tables');
 
-// Approval Memo constructor
-const ApprovalMemo = function(approvalMemo) {
-    this.id = approvalMemo.id;
+// Purchase Req constructor
+const PurchaseReqItems = function(purchaseReqItems) {
+    this.id = purchaseReqItems.id;
 }
 
-// Result all SMA_APPROVAL_MEMO from the database
-ApprovalMemo.getAll = result =>   {
-    const query = getQuery(SMA_APPROVAL_MEMO);
+// Result all SMA_PURCHASE_REQ_ITEMS from the database
+PurchaseReqItems.getAll = result =>   {
+    const query = getQuery(SMA_PURCHASE_REQ_ITEMS);
     sql.query(query, (err, res) => {
         if (err)    {
             result(null, err);
@@ -21,9 +21,9 @@ ApprovalMemo.getAll = result =>   {
     });
 };
 
-// Result a SMA_APPROVAL_MEMO filtered from id from the database
-ApprovalMemo.findById = (id, result) => {
-    const query = getByIdQuery(SMA_APPROVAL_MEMO, id);
+// Result a SMA_PURCHASE_REQ_ITEMS filtered from id from the database
+PurchaseReqItems.findById = (id, result) => {
+    const query = getByIdQuery(SMA_PURCHASE_REQ_ITEMS, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -36,29 +36,13 @@ ApprovalMemo.findById = (id, result) => {
             return;
         }
 
-        result(rowNotFoundResult(APPROVAL_MEMO));
+        result(rowNotFoundResult(PURCHASE_REQ_ITEMS));
     });
 };
 
-// filter
-ApprovalMemo.filter = (params, result) => {
-    let filterString = "";
-
-    if (params.status)  {
-        filterString += `status = ${params.status} AND `
-    }
-    if (params.company)  {
-        filterString += `company = ${params.company} AND `
-    }
-    if (params.decision)  {
-        filterString += `approval_status = ${params.decision} AND `
-    }
-
-    if (filterString != "") {
-        filterString = filterString.slice(0, -5)
-    }
-
-    const query = `SELECT * FROM ${SMA_APPROVAL_MEMO} WHERE ${filterString}`;
+// Result a SMA_PURCHASE_REQ_ITEMS filtered from purchase req from the database
+PurchaseReqItems.findByPurchaseReq = (id, result) => {
+    const query = `SELECT * from ${SMA_PURCHASE_REQ_ITEMS} where quantity > 0 and purchase_req_id = ${id}`;
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -71,14 +55,15 @@ ApprovalMemo.filter = (params, result) => {
             return;
         } else {
             result(null, []);
+            return;
         }
 
     });
 };
 
-// Update a SMA_APPROVAL_MEMO filtered from id from the database
-ApprovalMemo.updateById = (requestBody, result) => {
-    const query = putByIdQuery(SMA_APPROVAL_MEMO, requestBody);
+// Update a SMA_PURCHASE_REQ_ITEMS filtered from id from the database
+PurchaseReqItems.updateById = (requestBody, result) => {
+    const query = putByIdQuery(SMA_PURCHASE_REQ_ITEMS, requestBody);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -90,9 +75,9 @@ ApprovalMemo.updateById = (requestBody, result) => {
     });
 }
 
-// Insert a SMA_APPROVAL_MEMO into the database
-ApprovalMemo.insert = (requestBody, result) => {
-    const query = postByIdQuery(SMA_APPROVAL_MEMO, requestBody);
+// Insert a SMA_PURCHASE_REQ_ITEMS into the database
+PurchaseReqItems.insert = (requestBody, result) => {
+    const query = postByIdQuery(SMA_PURCHASE_REQ_ITEMS, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -106,8 +91,8 @@ ApprovalMemo.insert = (requestBody, result) => {
 }
 
 // Delete
-ApprovalMemo.delete = (requestBody, result) => {
-    const query = deleteByIdQuery(SMA_APPROVAL_MEMO, requestBody);
+PurchaseReqItems.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(SMA_PURCHASE_REQ_ITEMS, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -120,4 +105,4 @@ ApprovalMemo.delete = (requestBody, result) => {
     });
 }
 
-module.exports = ApprovalMemo;
+module.exports = PurchaseReqItems;

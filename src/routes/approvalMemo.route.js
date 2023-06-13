@@ -5,7 +5,9 @@ module.exports = app => {
   
     // Retrieve approval memo(s)
     router.get("/", approvalMemo.findAll);
-    router.get("/:id", approvalMemo.findById);
+    router.get("/fetch/:id", approvalMemo.findById);
+
+    router.get("/filter", approvalMemo.filter);
 
     // Edit approval memo
     router.put("/edit", approvalMemo.updateById);
