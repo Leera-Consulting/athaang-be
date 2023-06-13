@@ -66,6 +66,19 @@ Comment.findCommentsForSupplierInvoice = (si_id, result) =>   {
     });
 };
 
+// Result all Comment for approval memo
+Comment.findCommentsForApprovalMemo = (ap_id, result) =>   {
+    const query = `SELECT * from ${SMA_COMMENT} where doc_id = ${ap_id} and doc_type = 'AP' order by id desc`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Update a Comment filtered from id from the database
 Comment.updateById = (requestBody, result) => {
     const query = putByIdQuery(SMA_COMMENT, requestBody);
