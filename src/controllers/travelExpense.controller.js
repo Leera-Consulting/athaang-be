@@ -42,6 +42,27 @@ exports.findById = (req, res) => {
     })
 };
 
+// filter
+exports.filter = (req, res) => {
+
+    const params = req.query;
+  
+    TravelExpense.filter(params, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while retrieving AccountGroup."
+            });
+        }
+        else res.status(200).send({
+            success: true,
+            data: data
+        })
+    })
+};
+
 // Edit travel expense by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;

@@ -7,6 +7,8 @@ module.exports = app => {
     router.get("/", travelExpense.findAll);
     router.get("/fetch/:id", travelExpense.findById);
 
+    router.get("/filter", travelExpense.filter);
+
     // Edit travel expense
     router.put("/edit", travelExpense.updateById);
 

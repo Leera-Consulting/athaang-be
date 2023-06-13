@@ -40,6 +40,42 @@ TravelExpense.findById = (id, result) => {
     });
 };
 
+// filter
+TravelExpense.filter = (params, result) => {
+    let filterString = "";
+
+    if (params.status)  {
+        filterString += `status = ${params.status} AND `
+    }
+    if (params.emp_id)  {
+        filterString += `emp_id = ${params.emp_id} AND `
+    }
+    if (params.decision)  {
+        filterString += `approval_status = ${params.decision} AND `
+    }
+
+    if (filterString != "") {
+        filterString = filterString.slice(0, -5)
+    }
+
+    const query = `SELECT * FROM ${SMA_TRAVEL_EXPENSES} WHERE ${filterString}`;
+    sql.query(query, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+  
+        if (res.length) {
+            result(null, res);
+            return;
+        } else {
+            result(null, []);
+        }
+
+    });
+};
+
 // Update a travel expense filtered from id from the database
 TravelExpense.updateById = (requestBody, result) => {
     const query = putByIdQuery(SMA_TRAVEL_EXPENSES, requestBody);
