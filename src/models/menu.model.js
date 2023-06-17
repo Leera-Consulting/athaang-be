@@ -23,7 +23,7 @@ Menu.getAll = result =>   {
     const query = getQuery(SMA_MENU);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

@@ -13,7 +13,7 @@ Useraccess.getAll = result =>   {
     const query = getQuery(USERACCESS);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

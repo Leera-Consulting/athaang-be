@@ -13,7 +13,7 @@ PaymentHeader.getAll = result =>   {
     const query = getQuery(PAYMENT_HEADER);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

@@ -13,7 +13,7 @@ Expenses.getAll = result =>   {
     const query = getQuery(SMA_EXPENSES);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -45,7 +45,7 @@ Expenses.findTravelExpenseByApprovalRefNo = (te_id, result) =>   {
     const query = `SELECT * from ${SMA_EXPENSES} where approval_ref_no = ${te_id} and exp_type= 'T'`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

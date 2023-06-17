@@ -13,7 +13,7 @@ PurchaseOrder.getAll = result =>   {
     const query = getQuery(SMA_PURCHASE_ORDER);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

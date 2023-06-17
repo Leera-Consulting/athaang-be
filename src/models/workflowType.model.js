@@ -15,7 +15,7 @@ WorkflowType.getAll = result =>   {
     const query = getQuery(SMA_WORKFLOW_TYPE);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -75,7 +75,7 @@ WorkflowType.getReimbursementWorkflowTypes = (requestBody, result) =>   {
     const query = `SELECT b.* FROM sma_workflow a, sma_workflow_type b where b.id = a.trans_Type and company_id = ${requestBody?.company_id} and b.status = 'Y' and a.doc_Type = 'RE'`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -88,7 +88,7 @@ WorkflowType.getAllTenderWorkflowTypes = result =>   {
     const query = `SELECT * FROM ${SMA_WORKFLOW_TYPE} WHERE doc_type = 'TN' AND status = 'Y';`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -101,7 +101,7 @@ WorkflowType.getPurchaseRequestWorkflowTypes = result =>   {
     const query = `SELECT * FROM ${SMA_WORKFLOW_TYPE} WHERE doc_type = 'PR';`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

@@ -13,7 +13,7 @@ FileUploads.getAll = result =>   {
     const query = getQuery(FILE_UPLOADS);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -74,7 +74,7 @@ FileUploads.getTravelApprovalFileUploads = (ta_id, result) =>   {
     const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'TA' AND reference_id = ${ta_id};`
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -87,7 +87,7 @@ FileUploads.getReimbursementFileUploads = (re_id, result) =>   {
     const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'RE' AND reference_id = ${re_id};`
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -100,7 +100,7 @@ FileUploads.getSupplierInvoiceFileUploads = (si_id, result) =>   {
     const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'SI' AND reference_id = ${si_id};`
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -113,7 +113,7 @@ FileUploads.getTravelExpensesFileUploads = (te_id, result) =>   {
     const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'TE' AND reference_id = ${te_id};`
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

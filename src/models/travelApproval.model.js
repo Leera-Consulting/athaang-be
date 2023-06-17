@@ -13,7 +13,7 @@ TravelApproval.getAll = result =>   {
     const query = getQuery(SMA_TRAVAL_APPROVAL);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

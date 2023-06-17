@@ -13,7 +13,7 @@ TenderItems.getAll = result =>   {
     const query = getQuery(SMA_TENDER_ITEMS);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -26,7 +26,7 @@ TenderItems.getItemsOfTenderHeader = (tender_id, result) =>   {
     const query = `SELECT * from ${SMA_TENDER_ITEMS} where tender_hdr_id = ${tender_id}`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

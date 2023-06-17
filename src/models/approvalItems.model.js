@@ -13,7 +13,7 @@ ApprovalItems.getAll = result =>   {
     const query = getQuery(SMA_APPROVAL_ITEMS);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

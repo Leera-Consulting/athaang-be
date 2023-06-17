@@ -13,7 +13,7 @@ TenderFileUpload.getAll = result =>   {
     const query = getQuery(SMA_TENDER_FILEUPLOAD);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -26,7 +26,7 @@ TenderFileUpload.getFileUploadOfTenderHeader = (tender_id, result) =>   {
     const query = `SELECT * FROM ${SMA_TENDER_FILEUPLOAD} WHERE 1 AND tender_hdr_id = ${tender_id}`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

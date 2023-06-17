@@ -13,7 +13,7 @@ TallyJournalEntry.getAll = result =>   {
     const query = getQuery(TALLY_JOURNAL_ENTRY);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -45,7 +45,7 @@ TallyJournalEntry.findForTravelExpense = (te_id, result) =>   {
     const query = `SELECT * FROM ${TALLY_JOURNAL_ENTRY} WHERE doc_no = ${te_id} AND doc_type = 'TE' ORDER BY record_id`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -58,7 +58,7 @@ TallyJournalEntry.findForSupplierInvoice = (si_id, result) =>   {
     const query = `SELECT * FROM ${TALLY_JOURNAL_ENTRY} WHERE doc_no = ${si_id} AND doc_type = 'SI' ORDER BY record_id`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

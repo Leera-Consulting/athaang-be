@@ -16,7 +16,7 @@ Location.getAll = result =>   {
     const query = getQuery(SMA_LOCATION);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

@@ -13,7 +13,7 @@ BudgetName.getAll = result =>   {
     const query = getQuery(SMA_BUDGET_NAME);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

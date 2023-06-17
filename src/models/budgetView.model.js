@@ -13,7 +13,7 @@ BudgetView.getAll = result =>   {
     const query = getQuery(BUDGET_VIEW);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -45,7 +45,7 @@ BudgetView.getBudgetTransaction = (requestBody, result) =>   {
     const query = `SELECT a.doc_type, a.doc_no, a.items, a.budget_id, a.check_var, a.po_srno , a.doc_date, a.party_name, a.invoice_no, a.approval_no, a.po_number, a.comp_code, a.blocked_budget, a.used_budget, a.adjustment_budget, b.total_budget, a.location, a.department, a.status, a.party_id, a.doctype FROM ${BUDGET_VIEW} a, ${SMA_BUDGET} b WHERE 1 AND b.id = a.budget_id AND (a.comp_code = "${requestBody.comp_code}" AND b.location = "${requestBody.location}")`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

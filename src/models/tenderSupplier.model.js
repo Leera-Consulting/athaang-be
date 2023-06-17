@@ -13,7 +13,7 @@ TenderSupplier.getAll = result =>   {
     const query = getQuery(SMA_TENDER_SUPPLIER);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -26,7 +26,7 @@ TenderSupplier.getSuppliersOfTenderHeader = (tender_id, result) =>   {
     const query = `SELECT a.*, b.party_name from ${SMA_TENDER_SUPPLIER} a, ${SMA_PARTY_MST} b where b.id = a.supplier_id and tender_hdr_id = ${tender_id};`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

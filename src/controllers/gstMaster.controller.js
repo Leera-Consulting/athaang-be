@@ -5,6 +5,7 @@ const { handleSqlErrorMessage } = require("../utils/error");
 exports.findAll = (req, res) => {
 
     GSTMaster.getAll((err, data) => {
+        console.log("ik", err, data);
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 

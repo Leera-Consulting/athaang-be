@@ -16,7 +16,7 @@ ProductGroup.getAll = result =>   {
     const query = getQuery(SMA_PRODUCT_GROUP);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

@@ -16,7 +16,7 @@ Cities.getAll = result =>   {
     const query = getQuery(CITIES);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

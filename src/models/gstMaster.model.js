@@ -13,7 +13,7 @@ GSTMaster.getAll = result =>   {
     const query = getQuery(GST_MST);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

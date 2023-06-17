@@ -14,7 +14,7 @@ Role.getAll = result =>   {
     const query = getQuery(SMA_ROLE);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

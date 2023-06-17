@@ -13,7 +13,7 @@ Category.getAll = result =>   {
     const query = getQuery(SMA_CATEGORIES);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

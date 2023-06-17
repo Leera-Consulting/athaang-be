@@ -13,7 +13,7 @@ WorkflowHistory.getAll = result =>   {
     const query = getQuery(WORKFLOW_HISTORY);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -74,7 +74,7 @@ WorkflowHistory.getWorkflowHistoryOfDocument = (doc_id, result) =>   {
     const query = `SELECT * FROM workflow_history WHERE doc_id=${doc_id} AND doc_type = 'TA' ORDER BY id DESC;`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -87,7 +87,7 @@ WorkflowHistory.getTravelExpenseWorkhistory = (te_id, result) =>   {
     const query = `SELECT * from workflow_history where doc_id = ${te_id} and doc_type = 'TE' order by id desc `;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -100,7 +100,7 @@ WorkflowHistory.getReimbursementWorkhistory = (re_id, result) =>   {
     const query = `SELECT * from workflow_history where doc_id = ${re_id} and doc_type = 'RE' order by id desc `;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -113,7 +113,7 @@ WorkflowHistory.getSupplierInvoiceWorkflowTypes = (si_id, result) =>   {
     const query = `SELECT * from workflow_history where doc_id = ${si_id} and doc_type = 'SI' order by id desc`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

@@ -13,7 +13,7 @@ GoodsIssueNote.getAll = result =>   {
     const query = `SELECT * FROM ${SMA_GOODS_ISSUE_NOTE} WHERE 1 AND del != 'Y'`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

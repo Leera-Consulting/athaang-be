@@ -15,7 +15,7 @@ SmtpDetail.getAll = result =>   {
     const query = getQuery(SMTP_DTL);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

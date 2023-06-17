@@ -13,7 +13,7 @@ AccountGroup.getAll = result =>   {
     const query = getQuery(SMA_ACCOUNT_GROUP);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

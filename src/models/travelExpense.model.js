@@ -13,7 +13,7 @@ TravelExpense.getAll = result =>   {
     const query = getQuery(SMA_TRAVEL_EXPENSES);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -110,7 +110,7 @@ TravelExpense.getAllReimbursements = result =>   {
     const query = `SELECT * from ${SMA_TRAVEL_EXPENSES} where exp_type = 'R'`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

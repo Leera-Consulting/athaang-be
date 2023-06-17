@@ -13,7 +13,7 @@ AccountMst.getAll = result =>   {
     const query = getQuery(ACCOUNT_MST);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -27,7 +27,7 @@ AccountMst.getAllBanks = result =>   {
     const query = `SELECT * FROM ${ACCOUNT_MST} WHERE account_type = 'B'`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

@@ -13,7 +13,7 @@ BudgetAdjust.getAll = result =>   {
     const query = getQuery(BUDGET_ADJUST);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

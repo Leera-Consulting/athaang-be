@@ -13,7 +13,7 @@ PurchaseReqItems.getAll = result =>   {
     const query = getQuery(SMA_PURCHASE_REQ_ITEMS);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 

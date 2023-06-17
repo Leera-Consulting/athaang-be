@@ -13,7 +13,7 @@ Comment.getAll = result =>   {
     const query = getQuery(SMA_COMMENT);
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -45,7 +45,7 @@ Comment.findCommentsForTravelExpense = (te_id, result) =>   {
     const query = `SELECT * from ${SMA_COMMENT} where doc_id = ${te_id} and doc_type = 'TE' order by id desc`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -58,7 +58,7 @@ Comment.findCommentsForSupplierInvoice = (si_id, result) =>   {
     const query = `SELECT * from ${SMA_COMMENT} where doc_id = ${si_id} and doc_type = 'SI' order by id desc`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -71,7 +71,7 @@ Comment.findCommentsForApprovalMemo = (ap_id, result) =>   {
     const query = `SELECT * from ${SMA_COMMENT} where doc_id = ${ap_id} and doc_type = 'AP' order by id desc`;
     sql.query(query, (err, res) => {
         if (err)    {
-            result(null, err);
+            result(err, null);
             return;
         }
 
