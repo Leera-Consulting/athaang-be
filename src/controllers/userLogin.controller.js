@@ -1,16 +1,16 @@
-const User = require('../models/user.model');
+const UserLogin = require('../models/userLogin.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all users
+// Responses for fetching all UserLogin
 exports.findAll = (req, res) => {
   
-    User.getAll((err, data) => {
+    UserLogin.getAll((err, data) => {
       if (err)  {
         const sqlErrorMessage = handleSqlErrorMessage(err);
 
         res.status(500).send({
           success: false,
-          message: sqlErrorMessage || "Some error occurred while retrieving users."
+          message: sqlErrorMessage || "Some error occurred while retrieving UserLogin."
         });
       } else  {
         res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Responses for fetching a user by id
+// Responses for fetching a UserLogin by id
 exports.findById = (req, res) => {
 
   const { id } = req.params;
 
-  User.findById(id, (err, data) => {
+  UserLogin.findById(id, (err, data) => {
     if (err) {
       const sqlErrorMessage = handleSqlErrorMessage(err);
 
       res.status(500).send({
         success: false,
-        message: sqlErrorMessage || "Some error occurred while retrieving user."
+        message: sqlErrorMessage || "Some error occurred while retrieving UserLogin."
       });
     }
     else res.status(200).send({
@@ -42,17 +42,17 @@ exports.findById = (req, res) => {
   })
 };
 
-// Edit user by id
+// Edit UserLogin by id
 exports.updateById = (req, res) => {
   const requestBody = req.body;
 
-  User.updateById(requestBody, (err, data) => {
+  UserLogin.updateById(requestBody, (err, data) => {
       if (err)    {
           const sqlErrorMessage = handleSqlErrorMessage(err);
 
           res.status(500).send({
               success: false,
-              message: sqlErrorMessage || "Some error occurred while editing user."
+              message: sqlErrorMessage || "Some error occurred while editing UserLogin."
           })
       } else {
           res.status(200).send({
@@ -63,17 +63,17 @@ exports.updateById = (req, res) => {
   })
 }
 
-// Insert user by id
+// Insert UserLogin by id
 exports.insert = (req, res) => {
   const requestBody = req.body;
 
-  User.insert(requestBody, (err, data) => {
+  UserLogin.insert(requestBody, (err, data) => {
       if (err)    {
           const sqlErrorMessage = handleSqlErrorMessage(err);
 
           res.status(500).send({
               success: false,
-              message: sqlErrorMessage || "Some error occurred while editing user."
+              message: sqlErrorMessage || "Some error occurred while editing UserLogin."
           })
       } else {
           res.status(200).send({
@@ -88,7 +88,7 @@ exports.insert = (req, res) => {
 exports.delete = (req, res) => {
   const requestBody = req.body;
 
-  User.delete(requestBody, (err, data) => {
+  UserLogin.delete(requestBody, (err, data) => {
       if (err)    {
           const sqlErrorMessage = handleSqlErrorMessage(err);
 
