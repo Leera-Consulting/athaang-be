@@ -14,7 +14,7 @@ module.exports = app => {
     router.post("/create", product.insert);
 
     // Delete
-router.delete("/delete", product.delete);
+    router.delete("/delete", product.delete);
   
     app.use('/api/product', router);
 };

@@ -99,6 +99,7 @@ const SMA_APPROVAL_ITEMS = "sma_approval_items"
 const APPROVAL_ITEMS = "APPROVAL_ITEMS"
 const SMA_PURCHASE_REQ_ITEMS = "sma_purchase_req_items"
 const PURCHASE_REQ_ITEMS = "PURCHASE_REQ_ITEMS"
+const PO_ORDER_TYPE = "po_order_type"
 
 module.exports = {
     SMA_USER,
@@ -201,5 +202,6 @@ module.exports = {
     SMA_APPROVAL_ITEMS,
     APPROVAL_ITEMS,
     SMA_PURCHASE_REQ_ITEMS,
-    PURCHASE_REQ_ITEMS
+    PURCHASE_REQ_ITEMS,
+    PO_ORDER_TYPE
 }

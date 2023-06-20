@@ -5,7 +5,6 @@ function getQuery(table) {
 
 // Returns the query to get a row with a given id in a table
 function getByIdQuery(table, id) {
-    console.log(typeof id)
     return `SELECT * FROM ${table} WHERE id = ${id}`;
 }
 
@@ -21,6 +20,9 @@ function putByIdQuery(table, requestBody)    {
     }
     setString = setString.slice(0, -1);
 
+    if (requestBody.comp_id)    {
+        return `UPDATE ${table} SET ${setString} WHERE comp_id = ${requestBody.comp_id}`;        
+    }
     return `UPDATE ${table} SET ${setString} WHERE id = ${requestBody.id}`;
 }
 

@@ -1,16 +1,16 @@
-const PurchaseReq = require('../models/purchaseReq.model');
+const POOrderType = require('../models/poOrderType.model');
 const { handleSqlErrorMessage } = require("../utils/error");
 
-// Responses for fetching all purchase reqs
+// Responses for fetching all po order 
 exports.findAll = (req, res) => {
 
-    PurchaseReq.getAll((err, data) => {
+    POOrderType.getAll((err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving purchase reqs."
+                message: sqlErrorMessage || "Some error occurred while retrieving POOrderType."
             });
         } else {
             res.status(200).send({
@@ -21,18 +21,18 @@ exports.findAll = (req, res) => {
     })
 };
 
-// Responses for fetching a purchase req by id
+// Responses for fetching a po order by id
 exports.findById = (req, res) => {
 
     const { id } = req.params;
   
-    PurchaseReq.findById(id, (err, data) => {
+    POOrderType.findById(id, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving purchase reqs."
+                message: sqlErrorMessage || "Some error occurred while retrieving POOrderType."
             });
         }
         else res.status(200).send({
@@ -42,38 +42,17 @@ exports.findById = (req, res) => {
     })
 };
 
-// filter
-exports.filter = (req, res) => {
-
-    const params = req.query;
-  
-    PurchaseReq.filter(params, (err, data) => {
-        if (err)    {
-            const sqlErrorMessage = handleSqlErrorMessage(err);
-
-            res.status(500).send({
-                success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving purchase req."
-            });
-        }
-        else res.status(200).send({
-            success: true,
-            data: data
-        })
-    })
-};
-
-// Edit purchase reqs by id
+// Edit po order by id
 exports.updateById = (req, res) => {
     const requestBody = req.body;
 
-    PurchaseReq.updateById(requestBody, (err, data) => {
+    POOrderType.updateById(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing purchase reqs."
+                message: sqlErrorMessage || "Some error occurred while editing POOrderType."
             })
         } else {
             res.status(200).send({
@@ -84,17 +63,17 @@ exports.updateById = (req, res) => {
     })
 }
 
-// Insert purchase req by id
+// Insert po order 
 exports.insert = (req, res) => {
     const requestBody = req.body;
 
-    PurchaseReq.insert(requestBody, (err, data) => {
+    POOrderType.insert(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while editing purchase reqs."
+                message: sqlErrorMessage || "Some error occurred while inserting POOrderType."
             })
         } else {
             res.status(200).send({
@@ -109,7 +88,7 @@ exports.insert = (req, res) => {
 exports.delete = (req, res) => {
     const requestBody = req.body;
 
-    PurchaseReq.delete(requestBody, (err, data) => {
+    POOrderType.delete(requestBody, (err, data) => {
         if (err)    {
             const sqlErrorMessage = handleSqlErrorMessage(err);
 

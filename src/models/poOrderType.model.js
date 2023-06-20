@@ -1,16 +1,16 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { COMPANY } = require("../constants/tables");
+const { PO_ORDER_TYPE } = require('../constants/tables');
 
-// Company constructor
-const Company = function(company) {
-    this.id = company.id;
+// PO Order Type constructor
+const POOrderType = function(poOrderType) {
+    this.id = poOrderType.id;
 }
 
-// Result all company from the database
-Company.getAll = result =>   {
-    const query = getQuery(COMPANY);
+// Result all PO_ORDER_TYPE from the database
+POOrderType.getAll = result =>   {
+    const query = getQuery(PO_ORDER_TYPE);
     sql.query(query, (err, res) => {
         if (err)    {
             result(err, null);
@@ -21,9 +21,9 @@ Company.getAll = result =>   {
     });
 };
 
-// Result a company filtered from id from the database
-Company.findById = (id, result) => {
-    const query = `SELECT * FROM ${COMPANY} WHERE comp_id = ${id}`;
+// Result a PO_ORDER_TYPE filtered from id from the database
+POOrderType.findById = (id, result) => {
+    const query = getByIdQuery(PO_ORDER_TYPE, id);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -36,13 +36,13 @@ Company.findById = (id, result) => {
             return;
         }
 
-        result(rowNotFoundResult(COMPANY));
+        result(rowNotFoundResult(PO_ORDER_TYPE));
     });
 };
 
-// Update a company filtered from id from the database
-Company.updateById = (requestBody, result) => {
-    const query = putByIdQuery(COMPANY, requestBody);
+// Update a POOrderType filtered from id from the database
+POOrderType.updateById = (requestBody, result) => {
+    const query = putByIdQuery(PO_ORDER_TYPE, requestBody);
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -54,9 +54,9 @@ Company.updateById = (requestBody, result) => {
     });
 }
 
-// Insert a company into the database
-Company.insert = (requestBody, result) => {
-    const query = postByIdQuery(COMPANY, requestBody);
+// Insert a POOrderType into the database
+POOrderType.insert = (requestBody, result) => {
+    const query = postByIdQuery(PO_ORDER_TYPE, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -70,8 +70,8 @@ Company.insert = (requestBody, result) => {
 }
 
 // Delete
-Company.delete = (requestBody, result) => {
-    const query = deleteByIdQuery(COMPANY, requestBody);
+POOrderType.delete = (requestBody, result) => {
+    const query = deleteByIdQuery(PO_ORDER_TYPE, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {
@@ -84,4 +84,4 @@ Company.delete = (requestBody, result) => {
     });
 }
 
-module.exports = Company;
+module.exports = POOrderType;

@@ -5,7 +5,9 @@ module.exports = app => {
   
     // Retrieve purchase req(s)
     router.get("/", purchaseReq.findAll);
-    router.get("/:id", purchaseReq.findById);
+    router.get("/fetch/:id", purchaseReq.findById);
+
+    router.get("/filter", purchaseReq.filter);
 
     // Edit purchase req
     router.put("/edit", purchaseReq.updateById);
