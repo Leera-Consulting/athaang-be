@@ -79,6 +79,32 @@ Comment.findCommentsForApprovalMemo = (ap_id, result) =>   {
     });
 };
 
+// Result all Comment for purchase order
+Comment.findCommentsForPurchaseOrder = (po_id, result) =>   {
+    const query = `SELECT * from ${SMA_COMMENT} where doc_id = ${po_id} and doc_type = 'PO' order by id desc`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
+// Result all Comment for material requisition
+Comment.findCommentsForMaterialRequisition = (pr_id, result) =>   {
+    const query = `SELECT * from ${SMA_COMMENT} where doc_id = ${pr_id} and doc_type = 'PR' order by id desc`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Update a Comment filtered from id from the database
 Comment.updateById = (requestBody, result) => {
     const query = putByIdQuery(SMA_COMMENT, requestBody);

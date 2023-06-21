@@ -121,6 +121,32 @@ WorkflowHistory.getSupplierInvoiceWorkflowTypes = (si_id, result) =>   {
     });
 };
 
+// Result workflow history for purchase order
+WorkflowHistory.getPurchaseOrderWorkflowTypes = (po_id, result) =>   {
+    const query = `SELECT * from workflow_history where doc_id = ${po_id} and doc_type = 'PO' order by id desc`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
+// Result workflow history for material requisition
+WorkflowHistory.getMaterialRequisitionWorkflowTypes = (pr_id, result) =>   {
+    const query = `SELECT * from workflow_history where doc_id = ${pr_id} and doc_type = 'PR' order by id desc`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Delete
 WorkflowHistory.delete = (requestBody, result) => {
     const query = deleteByIdQuery(WORKFLOW_HISTORY, requestBody);

@@ -168,6 +168,48 @@ exports.findSupplierInvoiceWorkflowTypes = (req, res) =>   {
     })
 }
 
+// Result workflow history for purchase order
+exports.findPurchaseOrderWorkflowTypes = (req, res) =>   {
+    const { po_id } = req.params;
+
+    WorkflowHistory.getPurchaseOrderWorkflowTypes(po_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while getting workflow history."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
+// Result workflow history for material requisition
+exports.findMaterialRequisitionWorkflowTypes = (req, res) =>   {
+    const { pr_id } = req.params;
+
+    WorkflowHistory.getMaterialRequisitionWorkflowTypes(pr_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while getting workflow history."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
 // Delete 
 exports.delete = (req, res) => {
     const requestBody = req.body;

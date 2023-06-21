@@ -84,6 +84,48 @@ exports.findCommentsForSupplierInvoice = (req, res) => {
     })
 };
 
+// Responses for all Comment for purchase order
+exports.findCommentsForPurchaseOrder = (req, res) => {
+
+    const { po_id } = req.params;
+  
+    Comment.findCommentsForPurchaseOrder(po_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while retrieving Comment."
+            });
+        }
+        else res.status(200).send({
+            success: true,
+            data: data
+        })
+    })
+};
+
+// Responses for all Comment for material requisition
+exports.findCommentsForMaterialRequisition = (req, res) => {
+
+    const { pr_id } = req.params;
+  
+    Comment.findCommentsForMaterialRequisition(pr_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while retrieving Comment."
+            });
+        }
+        else res.status(200).send({
+            success: true,
+            data: data
+        })
+    })
+};
+
 // Responses for all Comment for approval memo
 exports.findCommentsForApprovalMemo = (req, res) => {
 

@@ -121,6 +121,32 @@ FileUploads.getTravelExpensesFileUploads = (te_id, result) =>   {
     });
 };
 
+// Result all purchase order file uploads from the database
+FileUploads.getPurchaseOrderFileUploads = (po_id, result) =>   {
+    const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'PO' AND reference_id = ${po_id};`
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
+// Result all material requisition file uploads from the database
+FileUploads.getMaterialRequisitionFileUploads = (pr_id, result) =>   {
+    const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'PR' AND reference_id = ${pr_id};`
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Delete
 FileUploads.delete = (requestBody, result) => {
     const query = deleteByIdQuery(FILE_UPLOADS, requestBody);

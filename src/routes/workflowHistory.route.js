@@ -25,8 +25,14 @@ module.exports = app => {
     // Retrieve workflow history for supplier invoice
     router.get("/supplier-invoice/:si_id", workflowHistory.findSupplierInvoiceWorkflowTypes);
 
+    // Retrieve workflow history for purchase order
+    router.get("/purchase-order/:po_id", workflowHistory.findPurchaseOrderWorkflowTypes);
+
+    // Retrieve workflow history for material requisition
+    router.get("/material-requisition/:pr_id", workflowHistory.findMaterialRequisitionWorkflowTypes);
+
     // Delete
-router.delete("/delete", workflowHistory.delete);
+    router.delete("/delete", workflowHistory.delete);
 
     app.use('/api/workflowHistory', router);
 };
