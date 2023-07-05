@@ -200,7 +200,28 @@ exports.findMaterialRequisitionFileUploads = (req, res) => {
 
             res.status(500).send({
                 success: false,
-                message: sqlErrorMessage || "Some error occurred while retrieving material requisition."
+                message: sqlErrorMessage || "Some error occurred while retrieving material requisition file upload."
+            });
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            });
+        }
+    })
+};
+
+// Responses for fetching all goods issue file uploads
+exports.findGoodsIsseFileUploads = (req, res) => {
+    const { gi_id } = req.params;
+
+    FileUploads.getGoodsIssueFileUploads(gi_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while retrieving goods issue file uploads."
             });
         } else {
             res.status(200).send({

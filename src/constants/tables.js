@@ -101,6 +101,9 @@ const SMA_PURCHASE_REQ_ITEMS = "sma_purchase_req_items"
 const PURCHASE_REQ_ITEMS = "PURCHASE_REQ_ITEMS"
 const PO_ORDER_TYPE = "po_order_type"
 const USER_LOGIN = "user_login"
+const SMA_GOODS_ISSUE_NOTE_ITEMS = "sma_goods_issue_note_items"
+const GOODS_ISSUE_NOTE_ITEMS = "GOODS_ISSUE_NOTE_ITEMS"
+const SMA_PRODUCT_OPEN_STOCK = "sma_product_open_stock"
 
 module.exports = {
     SMA_USER,
@@ -205,5 +208,8 @@ module.exports = {
     SMA_PURCHASE_REQ_ITEMS,
     PURCHASE_REQ_ITEMS,
     PO_ORDER_TYPE,
-    USER_LOGIN
+    USER_LOGIN,
+    SMA_GOODS_ISSUE_NOTE_ITEMS,
+    GOODS_ISSUE_NOTE_ITEMS,
+    SMA_PRODUCT_OPEN_STOCK
 }

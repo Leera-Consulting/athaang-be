@@ -58,7 +58,7 @@ SmtpDetail.updateById = (requestBody, result) => {
 
 // Insert a SMTP detail into the database
 SmtpDetail.insert = (requestBody, result) => {
-    const query = `UPDATE ${SMTP_DTL} SET username=${requestBody?.username} password=${requestBody?.password} port=${requestBody?.port} WHERE host = ${requestBody.host}`;
+    const query = postByIdQuery(SMTP_DTL, requestBody);
     console.log(query)
     sql.query(query, (err, res) => {
         if (err) {

@@ -210,6 +210,27 @@ exports.findMaterialRequisitionWorkflowTypes = (req, res) =>   {
     })
 }
 
+// Result workflow history for goods issue note
+exports.findGoodIssueWorkflowHistory = (req, res) =>   {
+    const { gi_id } = req.params;
+
+    WorkflowHistory.getGoodIssueWorkflowHistory(gi_id, (err, data) => {
+        if (err)    {
+            const sqlErrorMessage = handleSqlErrorMessage(err);
+
+            res.status(500).send({
+                success: false,
+                message: sqlErrorMessage || "Some error occurred while getting workflow history."
+            })
+        } else {
+            res.status(200).send({
+                success: true,
+                data: data
+            })
+        }
+    })
+}
+
 // Delete 
 exports.delete = (req, res) => {
     const requestBody = req.body;

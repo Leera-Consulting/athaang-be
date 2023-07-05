@@ -31,6 +31,9 @@ module.exports = app => {
     // Retrieve material requisition file uploads
     router.get("/pr/:pr_id", fileUploads.findMaterialRequisitionFileUploads)
 
+    // Retrieve goods issue file uploads
+    router.get("/gi/:gi_id", fileUploads.findGoodsIsseFileUploads)
+
     // Delete
     router.delete("/delete", fileUploads.delete);
 

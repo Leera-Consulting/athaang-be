@@ -1,7 +1,7 @@
 const { getQuery, getByIdQuery, putByIdQuery, postByIdQuery, deleteByIdQuery } = require('../utils/db');
 const { rowNotFoundResult } = require('../utils/error');
 const sql = require('./db.js');
-const { SMA_PRODUCT_GROUP, PRODUCT_GROUP } = require('../constants/tables');
+const { SMA_PRODUCT_GROUP, PRODUCT_GROUP, SMA_PRODUCT, SMA_PRODUCT_OPEN_STOCK } = require('../constants/tables');
 
 // Product group constructor
 const ProductGroup = function(productGroup) {
@@ -40,6 +40,19 @@ ProductGroup.findById = (id, result) => {
         }
 
         result(rowNotFoundResult(PRODUCT_GROUP));
+    });
+};
+
+// Get product groups for goods issue note
+ProductGroup.findProductGroupForGIN = (result) => {
+    const query = `SELECT * FROM ${SMA_PRODUCT_GROUP} where id in ( SELECT product_group FROM ${SMA_PRODUCT} WHERE 1 and id in ( SELECT product_name FROM ${SMA_PRODUCT_OPEN_STOCK} where (opening_stock + receipts - issue)>0 ) ) ORDER BY product_group ASC;`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
     });
 };
 

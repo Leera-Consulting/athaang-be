@@ -147,6 +147,19 @@ FileUploads.getMaterialRequisitionFileUploads = (pr_id, result) =>   {
     });
 };
 
+// Result all goods issue note file uploads from the database
+FileUploads.getGoodsIssueFileUploads = (gi_id, result) =>   {
+    const query = `SELECT * FROM ${FILE_UPLOADS} WHERE module = 'GI' AND reference_id = ${gi_id};`
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Delete
 FileUploads.delete = (requestBody, result) => {
     const query = deleteByIdQuery(FILE_UPLOADS, requestBody);

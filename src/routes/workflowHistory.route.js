@@ -31,6 +31,9 @@ module.exports = app => {
     // Retrieve workflow history for material requisition
     router.get("/material-requisition/:pr_id", workflowHistory.findMaterialRequisitionWorkflowTypes);
 
+    // Retrieve workflow history for goods issue
+    router.get("/goods-issue/:gi_id", workflowHistory.findGoodIssueWorkflowHistory);
+
     // Delete
     router.delete("/delete", workflowHistory.delete);
 

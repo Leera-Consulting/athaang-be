@@ -147,6 +147,19 @@ WorkflowHistory.getMaterialRequisitionWorkflowTypes = (pr_id, result) =>   {
     });
 };
 
+// Result workflow history for goods issue note
+WorkflowHistory.getGoodIssueWorkflowHistory = (gi_id, result) =>   {
+    const query = `SELECT * from workflow_history where doc_id = ${gi_id} and doc_type = 'GI' order by id desc`;
+    sql.query(query, (err, res) => {
+        if (err)    {
+            result(err, null);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 // Delete
 WorkflowHistory.delete = (requestBody, result) => {
     const query = deleteByIdQuery(WORKFLOW_HISTORY, requestBody);

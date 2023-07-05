@@ -5,7 +5,10 @@ module.exports = app => {
   
     // Retrieve productGroup(s)
     router.get("/", productGroup.findAll);
-    router.get("/:id", productGroup.findById);
+    router.get("/fetch/:id", productGroup.findById);
+
+    // Retrieve productGroup for goods issue note
+    router.get("/gin", productGroup.findProductGroupForGIN);
 
     // Edit productGroup
     router.put("/edit", productGroup.updateById);
