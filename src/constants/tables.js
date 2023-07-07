@@ -104,6 +104,9 @@ const USER_LOGIN = "user_login"
 const SMA_GOODS_ISSUE_NOTE_ITEMS = "sma_goods_issue_note_items"
 const GOODS_ISSUE_NOTE_ITEMS = "GOODS_ISSUE_NOTE_ITEMS"
 const SMA_PRODUCT_OPEN_STOCK = "sma_product_open_stock"
+const PRODUCT_OPEN_STOCK = "PRODUCT_OPEN_STOCK"
+const AUDIT_JOB_HEADER = "audit_job_header"
+const AUDIT_JOB_DETAILS = "audit_job_details"
 
 module.exports = {
     SMA_USER,
@@ -211,5 +214,8 @@ module.exports = {
     USER_LOGIN,
     SMA_GOODS_ISSUE_NOTE_ITEMS,
     GOODS_ISSUE_NOTE_ITEMS,
-    SMA_PRODUCT_OPEN_STOCK
+    SMA_PRODUCT_OPEN_STOCK,
+    PRODUCT_OPEN_STOCK,
+    AUDIT_JOB_HEADER,
+    AUDIT_JOB_DETAILS
 }

@@ -14,7 +14,7 @@ module.exports = app => {
     router.post("/create", purchaseOrder.insert);
 
     // Delete
-router.delete("/delete", purchaseOrder.delete);
+    router.delete("/delete", purchaseOrder.delete);
   
     app.use('/api/purchaseOrder', router);
 };

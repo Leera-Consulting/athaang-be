@@ -72,6 +72,9 @@ require("./routes/poOrderType.route.js")(app);
 require("./routes/userLogin.route.js")(app);
 require("./routes/workflow.route.js")(app);
 require("./routes/goodsIssueNoteItems.route.js")(app);
+require("./routes/productOpenStock.route.js")(app);
+require("./routes/auditJobHeader.route.js")(app);
+require("./routes/auditJobDetails.route.js")(app);
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', `${process.env.HOST_URL}/${process.env.PORT}`);
